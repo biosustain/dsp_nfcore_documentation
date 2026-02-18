@@ -1,19 +1,20 @@
-# Static website Template
+```{include} README.md
 
-This is a template for a static website using Sphinx and GitHub Pages.
+```
 
 ```{toctree}
 :maxdepth: 2
 :hidden:
+:caption: Pipelines
+
+quantms/README.md
+```
+
+```{toctree}
+:maxdepth: 2
+:hidden:
+:caption: MISC
 
 about
+DEVELOPING.md
 ```
-
-```{toctree}
-:maxdepth: 2
-:hidden:
-:caption: A topic
-
-folder_topic/article_topic
-```
-

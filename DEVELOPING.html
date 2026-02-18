@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Nextflow pipeline documentation at BRIGHT &#8212; Nextflow pipeline documentation at BRIGHT  documentation</title>
+    <title>Static website using Sphinx and GitHub Pages &#8212; Nextflow pipeline documentation at BRIGHT  documentation</title>
   
   
   
@@ -41,11 +41,11 @@
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'DEVELOPING';</script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Bigbio/Quantms" href="quantms/README.html" />
+    <link rel="prev" title="Data Science Platform at BRIGHT" href="about.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -108,8 +108,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -128,7 +126,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -168,8 +166,8 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
                     Nextflow pipeline documentation at BRIGHT
                 </a>
             </li>
@@ -179,9 +177,9 @@
 <li class="toctree-l1"><a class="reference internal" href="quantms/README.html">Bigbio/Quantms</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">MISC</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="about.html">Data Science Platform at BRIGHT</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DEVELOPING.html">Static website using Sphinx and GitHub Pages</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Static website using Sphinx and GitHub Pages</a></li>
 </ul>
 
     </div>
@@ -251,7 +249,7 @@
       
       
       
-      <li><a href="_sources/index.md" target="_blank"
+      <li><a href="_sources/DEVELOPING.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -335,7 +333,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Nextflow pipeline documentation at BRIGHT</h1>
+    <h1>Static website using Sphinx and GitHub Pages</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -345,9 +343,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-lauch-on-seqera-of-a-pipeline">Basic lauch on Seqera of a pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-in-github-codespaces-or-locally">2. Open in GitHub Codespaces (or locally)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-files">3. Edit files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-site-locally">4. Build the site locally</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-the-site">5. Publish the site</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-topic">Changing the topic</a></li>
 </ul>
             </nav>
         </div>
@@ -359,26 +362,105 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="nextflow-pipeline-documentation-at-bright">
-<h1>Nextflow pipeline documentation at BRIGHT<a class="headerlink" href="#nextflow-pipeline-documentation-at-bright" title="Link to this heading">#</a></h1>
-<section id="basic-lauch-on-seqera-of-a-pipeline">
-<h2>Basic lauch on Seqera of a pipeline<a class="headerlink" href="#basic-lauch-on-seqera-of-a-pipeline" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="static-website-using-sphinx-and-github-pages">
+<h1>Static website using Sphinx and GitHub Pages<a class="headerlink" href="#static-website-using-sphinx-and-github-pages" title="Link to this heading">#</a></h1>
+<blockquote>
+<div><p>based on <a class="reference external" href="https://github.com/enryH/notes_template" rel="noreferrer" target="_blank">enryh/notes_template</a></p>
+</div></blockquote>
+<p>You can find a recording of the below described instructions on youtube:
+<a class="reference external" href="https://www.youtube.com/watch?v=XolIezJtSPI" rel="noreferrer" target="_blank"><img alt="Live Demo on using the template repository for a notes website" src="https://img.youtube.com/vi/XolIezJtSPI/maxresdefault.jpg" /></a></p>
+<section id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Link to this heading">#</a></h2>
+<section id="open-in-github-codespaces-or-locally">
+<h3>2. Open in GitHub Codespaces (or locally)<a class="headerlink" href="#open-in-github-codespaces-or-locally" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>pipeline runs are triggered through the website, not manually</p></li>
-<li><p>tower is a Seqera tool and is configured through environment variables on Seqera</p></li>
+<li><p>go to <a class="reference external" href="https://github.com/codespaces" rel="noreferrer" target="_blank">github.com/codespaces</a> or use the “Code” button
+and select “Open with Codespaces”</p></li>
+<li><p>create a new codespace using the newly created repository</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nextflow</span> <span class="n">run</span> <span class="s1">&#39;https://github.com/nf-core/quantms&#39;</span>
-		 <span class="o">-</span><span class="n">name</span> <span class="n">my_unique_name</span>
-		 <span class="o">-</span><span class="n">params</span><span class="o">-</span><span class="n">file</span> <span class="n">params</span><span class="o">.</span><span class="n">json</span>
-		 <span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">tower</span>
-		 <span class="o">-</span><span class="n">r</span> <span class="mf">1.6.0</span>
-		 <span class="o">-</span><span class="n">profile</span> <span class="n">docker</span><span class="p">,</span><span class="n">wave</span>
+<blockquote>
+<div><p>If you are done, remember to delete the codespace to not see your free credit or money
+wasted. Also inactive (stopped) codespaces use storage for the last 30 days.
+See <a class="reference external" href="https://youtu.be/gY0usMl2o5I" rel="noreferrer" target="_blank">this youtube video</a> on how to do it:</p>
+</div></blockquote>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=gY0usMl2o5I" rel="noreferrer" target="_blank"><img alt="Delete you codespaces!" src="https://img.youtube.com/vi/gY0usMl2o5I/default.jpg" /></a></p>
+</section>
+<section id="edit-files">
+<h3>3. Edit files<a class="headerlink" href="#edit-files" title="Link to this heading">#</a></h3>
+<p>You will need to know the Markdown to format your text. See
+<a class="reference external" href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax" rel="noreferrer" target="_blank">this overview on GitHub</a>
+or <a class="reference external" href="https://www.markdownguide.org/cheat-sheet/" rel="noreferrer" target="_blank">this cheatsheet</a> to get started.</p>
+<ul class="simple">
+<li><p>update the <code class="docutils literal notranslate"><span class="pre">index.md</span></code> file to include new files</p></li>
+<li><p>use <a class="reference external" href="https://pandoc.org/try/" rel="noreferrer" target="_blank">pandoc</a> to convert your previous files into markdown or
+reStructuredText</p></li>
+</ul>
+<p>Troubleshooting:</p>
+<ul class="simple">
+<li><p>don’t forget to add new files to the <code class="docutils literal notranslate"><span class="pre">index.md</span></code> file</p></li>
+<li><p>each document should have a title (<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">title</span></code>) using a main heading and otherwise
+nested headlines (subheadings followed by sub-subheadings)</p></li>
+</ul>
+</section>
+<section id="build-the-site-locally">
+<h3>4. Build the site locally<a class="headerlink" href="#build-the-site-locally" title="Link to this heading">#</a></h3>
+<p>Sphinx uses the configuration file <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> to set up the site. The <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file
+contain extensions and themes that are used additionally to sphinx to build the site.
+The layout of the website is defined in the <code class="docutils literal notranslate"><span class="pre">index.md</span></code> file.</p>
+<blockquote>
+<div><p>Have look at <code class="docutils literal notranslate"><span class="pre">.github/workflows/build_website.yaml</span></code> to see how the site is built
+if you are interested.</p>
+</div></blockquote>
+<ul>
+<li><p>Open a terminal (GitHub Codespaces)</p></li>
+<li><p>install required packages from <a class="reference download internal" download="" href="_downloads/b4ef698db8ca845e5845c4618278f29a/requirements.txt"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 </pre></div>
 </div>
-<div class="toctree-wrapper compound">
+</li>
+<li><p>build the site (you could set an alias if you want):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-build<span class="w"> </span>-n<span class="w"> </span>-W<span class="w"> </span>--keep-going<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>./<span class="w"> </span>./_build/
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+<p>in case the command is not found, try:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>sphinx<span class="w"> </span>-n<span class="w"> </span>-W<span class="w"> </span>--keep-going<span class="w"> </span>-b<span class="w"> </span>html<span class="w"> </span>./<span class="w"> </span>./_build/
+</pre></div>
 </div>
+</li>
+<li><p>open the site in a browser:</p>
+<ul class="simple">
+<li><p>install <a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server" rel="noreferrer" target="_blank">“Live Preview” extension</a> in Visual Studio Code</p></li>
+<li><p>open the <code class="docutils literal notranslate"><span class="pre">_build/index.html</span></code> file in the browser (right-click, “Show Preview”)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="publish-the-site">
+<h3>5. Publish the site<a class="headerlink" href="#publish-the-site" title="Link to this heading">#</a></h3>
+<p>Follow
+<a class="reference external" href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" rel="noreferrer" target="_blank">these instructions</a>
+to publish the website using GitHub Pages.</p>
+<ul class="simple">
+<li><p>Select the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch as the source for the GitHub Pages site (currently step 7)</p></li>
+<li><p>add the deployed url to your “About” on the right sight of the repository</p></li>
+</ul>
+</section>
+</section>
+<section id="changing-the-topic">
+<h2>Changing the topic<a class="headerlink" href="#changing-the-topic" title="Link to this heading">#</a></h2>
+<p>If you want to change the topic you can browse templates on the follwing site: <a class="reference external" href="https://sphinx-themes.org/" rel="noreferrer" target="_blank">sphinx-themes.org/</a></p>
+<p>You will need to change at least these things to switch to the new template:</p>
+<ul class="simple">
+<li><p>Install it and add it to the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file (Sphinx templates come as a Python package)</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">html_theme</span></code> variable to the selected theme</p></li>
+<li><p>update the <code class="docutils literal notranslate"><span class="pre">html_theme_options</span></code> to the available options of the theme</p></li>
+</ul>
+</li>
+</ul>
+<p>Try for example the the <a class="reference external" href="https://sphinx-themes.org/sample-sites/sphinx-press-theme/" rel="noreferrer" target="_blank">press theme</a>.
+Don’t forget to update the <code class="docutils literal notranslate"><span class="pre">html_theme_options</span></code> in <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> to the available options of this theme.</p>
 </section>
 </section>
 
@@ -393,14 +475,14 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="quantms/README.html"
-       title="next page">
+    <a class="left-prev"
+       href="about.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Bigbio/Quantms</p>
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Science Platform at BRIGHT</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -418,9 +500,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-lauch-on-seqera-of-a-pipeline">Basic lauch on Seqera of a pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#open-in-github-codespaces-or-locally">2. Open in GitHub Codespaces (or locally)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-files">3. Edit files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#build-the-site-locally">4. Build the site locally</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-the-site">5. Publish the site</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-topic">Changing the topic</a></li>
 </ul>
   </nav></div>
 

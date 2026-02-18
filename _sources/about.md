@@ -1,5 +1,3 @@
-# About
+# Data Science Platform at BRIGHT
 
-> More information about your (your team) and your work.
-
-Some text about you here.
+Copy relevant information from dsp_notes.
