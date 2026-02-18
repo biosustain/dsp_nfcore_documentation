@@ -6,8 +6,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "Data Science Platform notes template"
-copyright = "2024, DTU Biosustain, Informatics Platform, DSP"
+project = "Nextflow pipeline documentation at BRIGHT"
+copyright = "2026, BRIGHT, Informatics Platform, DSP"
 author = "Henry Webel"
 
 
@@ -30,7 +30,7 @@ exclude_patterns = [
     ".DS_Store",
     "**/pandoc_ipynb/inputs/*",
     ".nox/*",
-    '.venv/*',
+    ".venv/*",
     "README.md",
     "**/.ipynb_checkpoints/*",
     "jupyter_execute",
@@ -84,10 +84,10 @@ html_theme = "sphinx_book_theme"
 # html_logo = "_static/logo-wide.svg"
 # html_favicon = "_static/logo-square.svg"
 html_theme_options = {
-    "github_url": "https://github.com/enryh/",
-    "repository_url": "https://github.com/enryh/notes_template",
+    "github_url": "https://github.com/biosustain/",
+    "repository_url": "https://github.com/biosustain/nextflow_pipeline_documentation",
     # "repository_branch": "main",
-    # "home_page_in_toc": True,
+    "home_page_in_toc": True,
     # "path_to_docs": "docs",
     "show_navbar_depth": 1,
     # "use_edit_page_button": True,
