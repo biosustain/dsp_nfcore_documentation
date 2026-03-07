@@ -1,0 +1,1484 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>nf-core/taxprofiler &#8212; Nextflow pipeline documentation at BRIGHT  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'taxprofiler/README';</script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Science Platform at BRIGHT" href="../about.html" />
+    <link rel="prev" title="Bigbio/Quantms" href="../quantms/README.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Nextflow pipeline documentation at BRIGHT  documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/biosustain/" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Nextflow pipeline documentation at BRIGHT
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../quantms/README.html">Bigbio/Quantms</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pipelines</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">nf-core/taxprofiler</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">MISC</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">Data Science Platform at BRIGHT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DEVELOPING.html">Static website using Sphinx and GitHub Pages</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/biosustain/nextflow_pipeline_documentation" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/taxprofiler/README.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>nf-core/taxprofiler</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">nf-core/taxprofiler</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline">Taxonomical profiling using nf-core/taxprofiler pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-samplesheet-csv-as">Create samplesheet.csv as:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-databases-csv-sheet-as">Create a databases.csv sheet as:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-command-line-to-run-the-pipeline-outside-seqera">Example of Command line to run the pipeline outside Seqera</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#worth-noticing">Worth noticing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seqera-platform">Seqera platform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#needed-to-change-vmtype-that-in-the-nextflow-config">Needed to change vmType that in the nextflow.config:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolved-configuration-on-seqera">Resolved configuration on Seqera</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="nf-core-taxprofiler">
+<h1>nf-core/taxprofiler<a class="headerlink" href="#nf-core-taxprofiler" title="Link to this heading">#</a></h1>
+<section id="taxonomical-profiling-using-nf-core-taxprofiler-pipeline">
+<h2>Taxonomical profiling using nf-core/taxprofiler pipeline<a class="headerlink" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline" title="Link to this heading">#</a></h2>
+<p>nf-core/taxprofiler is a bioinformatics best-practice analysis pipeline for taxonomic classification and profiling of shotgun short- and long-read metagenomic data. It allows for in-parallel taxonomic identification of reads or taxonomic abundance estimation with multiple classification and profiling tools against multiple databases, and produces standardised output tables for facilitating results comparison between different tools and databases.</p>
+<p>You can find a more exhaustive description and running instructions in here:
+https://nf-co.re/taxprofiler/1.2.6</p>
+<p>Here we provide with a small manual to how to prepare, for running the pipeline and running it in the Microsoft Azure environment.</p>
+</section>
+<section id="create-samplesheet-csv-as">
+<h2>Create samplesheet.csv as:<a class="headerlink" href="#create-samplesheet-csv-as" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span><span class="p">,</span><span class="n">run_accession</span><span class="p">,</span><span class="n">instrument_platform</span><span class="p">,</span><span class="n">fastq_1</span><span class="p">,</span><span class="n">fastq_2</span><span class="p">,</span><span class="n">fasta</span>
+<span class="mi">2612</span><span class="p">,</span><span class="n">run1</span><span class="p">,</span><span class="n">ILLUMINA</span><span class="p">,</span><span class="mi">2612</span><span class="n">_run1_R1</span><span class="o">.</span><span class="n">fq</span><span class="o">.</span><span class="n">gz</span><span class="p">,,</span>
+<span class="mi">2612</span><span class="p">,</span><span class="n">run2</span><span class="p">,</span><span class="n">ILLUMINA</span><span class="p">,</span><span class="mi">2612</span><span class="n">_run2_R1</span><span class="o">.</span><span class="n">fq</span><span class="o">.</span><span class="n">gz</span><span class="p">,,</span>
+<span class="mi">2612</span><span class="p">,</span><span class="n">run3</span><span class="p">,</span><span class="n">ILLUMINA</span><span class="p">,</span><span class="mi">2612</span><span class="n">_run3_R1</span><span class="o">.</span><span class="n">fq</span><span class="o">.</span><span class="n">gz</span><span class="p">,</span><span class="mi">2612</span><span class="n">_run3_R2</span><span class="o">.</span><span class="n">fq</span><span class="o">.</span><span class="n">gz</span><span class="p">,</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="create-a-databases-csv-sheet-as">
+<h2>Create a databases.csv sheet as:<a class="headerlink" href="#create-a-databases-csv-sheet-as" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="p">,</span><span class="n">db_name</span><span class="p">,</span><span class="n">db_params</span><span class="p">,</span><span class="n">db_path</span>
+<span class="n">metaphlan</span><span class="p">,</span><span class="n">db1</span><span class="p">,,</span><span class="n">az</span><span class="p">:</span><span class="o">//</span><span class="n">orange</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">metaphlan_db</span>
+<span class="n">motu</span><span class="p">,</span><span class="n">db2</span><span class="p">,,</span><span class="n">az</span><span class="p">:</span><span class="o">//</span><span class="n">orange</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">db_mOTU</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The databases will be store in the corresponding data lake folder called databases. Until then you have to download and prepare the databases yourself.</p>
+<p>Files for Metaphlan were download from:
+http://cmprod1.cibio.unitn.it/databases/MetaPhlAn/metaphlan_databases/</p>
+<p>For mOTUs:
+Needed to prepare the mOTUs database as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">motus</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">motus</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">bioconda</span> <span class="n">motus</span>
+<span class="n">motus</span> <span class="n">downloadDB</span>
+</pre></div>
+</div>
+<p>It got copied the database locally in here: /Users/apca/anaconda3/envs/motus/lib/python3.9/site-packages/motus/db_mOTU and I passed this dir to databases.csv</p>
+</section>
+<section id="example-of-command-line-to-run-the-pipeline-outside-seqera">
+<h2>Example of Command line to run the pipeline outside Seqera<a class="headerlink" href="#example-of-command-line-to-run-the-pipeline-outside-seqera" title="Link to this heading">#</a></h2>
+<p>Using Docker as contanerizing system
+Using only Metaphlan as reference database</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nextflow</span> <span class="n">run</span> <span class="n">nf</span><span class="o">-</span><span class="n">core</span><span class="o">/</span><span class="n">taxprofiler</span> <span class="o">-</span><span class="n">profile</span> <span class="n">az_test</span><span class="p">,</span><span class="n">docker</span> <span class="o">--</span><span class="nb">input</span> <span class="n">samplesheet</span><span class="o">.</span><span class="n">csv</span> <span class="o">--</span><span class="n">databases</span> <span class="n">databases</span><span class="o">.</span><span class="n">csv</span> <span class="o">--</span><span class="n">outdir</span> <span class="n">results_100bp</span> <span class="o">--</span><span class="n">perform_shortread_qc</span> <span class="o">--</span><span class="n">shortread_qc_tool</span> <span class="n">adapterremoval</span> <span class="o">--</span><span class="n">save_analysis_ready_fastqs</span> <span class="o">--</span><span class="n">shortread_qc_minlength</span> <span class="mi">100</span> <span class="o">--</span><span class="n">perform_shortread_complexityfilter</span> <span class="o">--</span><span class="n">perform_shortread_hostremoval</span> <span class="o">--</span><span class="n">hostremoval_reference</span> <span class="n">az</span><span class="p">:</span><span class="o">//</span><span class="n">masldmice</span><span class="o">/</span><span class="n">host_genome</span><span class="o">/</span><span class="n">GCF_000001635</span><span class="mf">.27</span><span class="n">_GRCm39_genomic</span><span class="o">.</span><span class="n">fna</span> <span class="o">--</span><span class="n">perform_runmerging</span> <span class="o">--</span><span class="n">run_metaphlan</span> <span class="o">--</span><span class="n">run_profile_standardisation</span> <span class="o">-</span><span class="n">w</span> <span class="n">az</span><span class="p">:</span><span class="o">//</span><span class="n">masldmice</span><span class="o">/</span><span class="n">work</span> <span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">tower</span> <span class="o">-</span><span class="n">resume</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="worth-noticing">
+<h1>Worth noticing<a class="headerlink" href="#worth-noticing" title="Link to this heading">#</a></h1>
+<p>You need to add –shortread_qc_minlength 100 to require a minimum length for read after quality control
+You need to add –save_analysis_ready_fastqs to save the qc filetered reads before they go into classification or profiling
+You need to add –perform_runmerging to merge different lanes of the same sample
+You need to add –run_profile_standardisation so that all metaphlan profile of each sample get combined in a single report (This may be changed soon, follow issue: https://github.com/nf-core/taxprofiler/issues/494)</p>
+<section id="seqera-platform">
+<h2>Seqera platform<a class="headerlink" href="#seqera-platform" title="Link to this heading">#</a></h2>
+<p>Notice that one parameter tells the pipeline to be monitored by Seqera platform (-with-tower)
+To do that login to Seqera platform and create a token (User tokens) clicking on the User settings button in the upper-right corner.
+Once created, copy it and export it in your terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">TOWER_ACCESS_TOKEN</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">token</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="needed-to-change-vmtype-that-in-the-nextflow-config">
+<h2>Needed to change vmType that in the nextflow.config:<a class="headerlink" href="#needed-to-change-vmtype-that-in-the-nextflow-config" title="Link to this heading">#</a></h2>
+<p>To meet the requirement of 12 CPUs and 72 GB of memory, we used “Standard_E16s_v3” with 16 cpus and 128GB memory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pools</span> <span class="p">{</span>
+    <span class="n">auto</span> <span class="p">{</span>
+        <span class="n">autoScale</span> <span class="o">=</span> <span class="n">true</span>
+        <span class="n">vmType</span> <span class="o">=</span> <span class="s1">&#39;Standard_E16s_v3&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Also had to add the following code to skip a step that does not work well with Metaphlan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">process</span> <span class="p">{</span>
+    <span class="n">withName</span><span class="p">:</span> <span class="s1">&#39;TAXPASTA_MERGE&#39;</span> <span class="p">{</span>
+        <span class="n">when</span> <span class="o">=</span> <span class="n">false</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h2>
+<p>These are the parameters of the last succesful run</p>
+<details>
+<summary>All parameters of quantms 1.6.0 (JSON)</summary>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    
+    <span class="s2">&quot;shortread_complexityfilter_prinseqplusplus_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;entropy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;custom_config_base&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/nf-core/configs/master&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;save_analysis_ready_fastqs&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;malt_generate_megansummary&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;plaintext_email&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;malt_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;BlastN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;diamond_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_complexityfilter_prinseqplusplus_dustscore&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s2">&quot;kaiju_taxon_rank&quot;</span><span class="p">:</span> <span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;standardisation_taxpasta_format&quot;</span><span class="p">:</span> <span class="s2">&quot;tsv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;databases&quot;</span><span class="p">:</span> <span class="s2">&quot;az://seqera/raw/projectname/data/databases.csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;run_kmcp&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;krakenuniq_ram_chunk_size&quot;</span><span class="p">:</span> <span class="s2">&quot;16G&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;ganon_report_mincount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;run_kraken2&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;publish_dir_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;copy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;az://seqera/raw/projectname/data/Metagenomics2/samplesheet_metagenomics2.csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;perform_shortread_hostremoval&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;krakenuniq_batch_size&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_qc_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;adapterremoval&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;run_metaphlan&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;preprocessing_qc_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;fastqc&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;motus_save_mgc_read_counts&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_qc_mergepairs&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;kraken2_save_readclassifications&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;taxpasta_add_name&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;ganon_report_maxcount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;standardisation_motus_generatebiom&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_complexityfilter_fastp_threshold&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_complexityfilter_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;bbduk&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;save_preprocessed_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;diamond_output_format&quot;</span><span class="p">:</span> <span class="s2">&quot;tsv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;custom_config_version&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ganon_report_type&quot;</span><span class="p">:</span> <span class="s2">&quot;reads&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_qc_minlength&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;run_centrifuge&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_qc_skipadaptertrim&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;longread_qc_qualityfilter_minlength&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
+    <span class="s2">&quot;run_profile_standardisation&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;perform_shortread_qc&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;ganon_report_rank&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;taxpasta_add_lineage&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;perform_shortread_redundancyestimation&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;run_krona&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;motus_remove_ncbi_ids&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;malt_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;save_runmerged_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;outdir&quot;</span><span class="p">:</span> <span class="s2">&quot;az://seqera/results/smoke_scrub_malthe/metagenomics2/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pipelines_testdata_base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/nf-core/test-datasets/&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_complexityfilter_bbduk_mask&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;centrifuge_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;save_hostremoval_bam&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;perform_runmerging&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;run_bracken&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;kmcp_save_search&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_complexityfilter_bbduk_windowsize&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="s2">&quot;help_full&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;monochrome_logs&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;ganon_report_toppercentile&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;ganon_save_readclassifications&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;max_multiqc_email_size&quot;</span><span class="p">:</span> <span class="s2">&quot;25.MB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_qc_dedup&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;save_complexityfiltered_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;longread_filter_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;nanoq&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;validate_params&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;kaiju_expand_viruses&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;run_diamond&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;skip_preprocessing_qc&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;krakenuniq_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;perform_longread_qc&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_qc_includeunmerged&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;trace_report_suffix&quot;</span><span class="p">:</span> <span class="s2">&quot;2025-08-29_11-33-52&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_redundancyestimation_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;kmer&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;run_ganon&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;longread_adapterremoval_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;porechop_abi&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;taxpasta_ignore_errors&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;longread_qc_skipadaptertrim&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;shortread_complexityfilter_entropy&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="s2">&quot;multiqc_title&quot;</span><span class="p">:</span> <span class="s2">&quot;multiQC_metagenomics2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;kraken2_save_minimizers&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;longread_qc_qualityfilter_minquality&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">&quot;krakenuniq_save_readclassifications&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;longread_qc_skipqualityfilter&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;run_kaiju&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;kraken2_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;motus_use_relative_abundance&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;run_motus&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;save_hostremoval_index&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;run_krakenuniq&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;show_hidden&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;longread_qc_qualityfilter_targetbases&quot;</span><span class="p">:</span> <span class="mi">500000000</span><span class="p">,</span>
+    <span class="s2">&quot;bracken_save_intermediatekraken2&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;taxpasta_add_rank&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;perform_shortread_complexityfilter&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+    <span class="s2">&quot;taxpasta_add_ranklineage&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;perform_longread_hostremoval&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;save_untarred_databases&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;longread_qc_qualityfilter_keeppercent&quot;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+    <span class="s2">&quot;taxpasta_add_idlineage&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;run_malt&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;save_hostremoval_unmapped&quot;</span><span class="p">:</span> <span class="n">false</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</details>
+</section>
+<section id="resolved-configuration-on-seqera">
+<h2>Resolved configuration on Seqera<a class="headerlink" href="#resolved-configuration-on-seqera" title="Link to this heading">#</a></h2>
+<p>Seqera give a resolved configuration of the parameters and all settings with respect
+to the profile setting up the compute environment.</p>
+<details>
+<summary>Resolved parameters and profile configuration of a taxprofiler 1.2.3 (JSON)
+on Azure</summary>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>nextflow {
+   enable {
+      strict = true
+      configProcessNamesValidation = false
+   }
+}
+
+params {
+   input = &#39;az://seqera/raw/smoke_scrub_malthe/data/Metagenomics2/samplesheet_metagenomics2.csv&#39;
+   multiqc_config = null
+   multiqc_title = &#39;multiQC_metagenomics2&#39;
+   multiqc_logo = null
+   max_multiqc_email_size = &#39;25.MB&#39;
+   multiqc_methods_description = null
+   outdir = &#39;az://seqera/results/smoke_scrub_malthe/metagenomics2/&#39;
+   publish_dir_mode = &#39;copy&#39;
+   email = null
+   email_on_fail = null
+   plaintext_email = false
+   monochrome_logs = false
+   hook_url = null
+   help = false
+   help_full = false
+   show_hidden = false
+   version = false
+   pipelines_testdata_base_path = &#39;https://raw.githubusercontent.com/nf-core/test-datasets/&#39;
+   trace_report_suffix = &#39;2025-08-29_11-33-55&#39;
+   config_profile_name = null
+   config_profile_description = null
+   custom_config_version = &#39;master&#39;
+   shortread_qc_minlength = 100
+   perform_shortread_complexityfilter = true
+   save_analysis_ready_fastqs = true
+   perform_shortread_qc = true
+   run_profile_standardisation = false
+   run_metaphlan = true
+   shortread_qc_tool = &#39;adapterremoval&#39;
+   databases = &#39;az://seqera/raw/smoke_scrub_malthe/data/databases.csv&#39;
+   custom_config_base = &#39;https://raw.githubusercontent.com/nf-core/configs/master&#39;
+   config_profile_contact = null
+   config_profile_url = null
+   validate_params = true
+   save_untarred_databases = false
+   skip_preprocessing_qc = false
+   preprocessing_qc_tool = &#39;fastqc&#39;
+   shortread_qc_skipadaptertrim = false
+   shortread_qc_mergepairs = false
+   shortread_qc_includeunmerged = false
+   shortread_qc_adapter1 = null
+   shortread_qc_adapter2 = null
+   shortread_qc_adapterlist = null
+   shortread_qc_dedup = false
+   perform_longread_qc = false
+   longread_adapterremoval_tool = &#39;porechop_abi&#39;
+   longread_qc_skipadaptertrim = false
+   longread_qc_skipqualityfilter = false
+   longread_filter_tool = &#39;nanoq&#39;
+   longread_qc_qualityfilter_minlength = 1000
+   longread_qc_qualityfilter_keeppercent = 90
+   longread_qc_qualityfilter_minquality = 7
+   longread_qc_qualityfilter_targetbases = 500000000
+   save_preprocessed_reads = false
+   perform_shortread_redundancyestimation = false
+   shortread_redundancyestimation_mode = &#39;kmer&#39;
+   shortread_complexityfilter_tool = &#39;bbduk&#39;
+   shortread_complexityfilter_entropy = 0.3
+   shortread_complexityfilter_bbduk_windowsize = 50
+   shortread_complexityfilter_bbduk_mask = false
+   shortread_complexityfilter_prinseqplusplus_mode = &#39;entropy&#39;
+   shortread_complexityfilter_prinseqplusplus_dustscore = 0.5
+   shortread_complexityfilter_fastp_threshold = 30
+   save_complexityfiltered_reads = false
+   perform_runmerging = false
+   save_runmerged_reads = false
+   perform_shortread_hostremoval = false
+   perform_longread_hostremoval = false
+   hostremoval_reference = null
+   shortread_hostremoval_index = null
+   longread_hostremoval_index = null
+   save_hostremoval_index = false
+   save_hostremoval_bam = false
+   save_hostremoval_unmapped = false
+   run_malt = false
+   malt_mode = &#39;BlastN&#39;
+   malt_generate_megansummary = false
+   malt_save_reads = false
+   run_kraken2 = false
+   kraken2_save_reads = false
+   kraken2_save_readclassifications = false
+   kraken2_save_minimizers = false
+   run_krakenuniq = false
+   krakenuniq_ram_chunk_size = &#39;16G&#39;
+   krakenuniq_save_reads = false
+   krakenuniq_save_readclassifications = false
+   krakenuniq_batch_size = 20
+   run_bracken = false
+   bracken_save_intermediatekraken2 = false
+   run_centrifuge = false
+   centrifuge_save_reads = false
+   run_kaiju = false
+   kaiju_expand_viruses = false
+   kaiju_taxon_rank = &#39;species&#39;
+   run_diamond = false
+   diamond_output_format = &#39;tsv&#39;
+   diamond_save_reads = false
+   run_motus = false
+   motus_use_relative_abundance = false
+   motus_remove_ncbi_ids = false
+   motus_save_mgc_read_counts = false
+   run_kmcp = false
+   kmcp_save_search = false
+   run_ganon = false
+   ganon_report_type = &#39;reads&#39;
+   ganon_report_rank = &#39;default&#39;
+   ganon_report_toppercentile = 0
+   ganon_report_mincount = 0
+   ganon_report_maxcount = 0
+   ganon_save_readclassifications = false
+   run_krona = false
+   krona_taxonomy_directory = null
+   standardisation_taxpasta_format = &#39;tsv&#39;
+   taxpasta_taxonomy_dir = null
+   taxpasta_add_name = false
+   taxpasta_add_rank = false
+   taxpasta_add_lineage = false
+   taxpasta_add_idlineage = false
+   taxpasta_add_ranklineage = false
+   taxpasta_ignore_errors = false
+   standardisation_motus_generatebiom = false
+}
+
+process {
+   cpus = {  1    * task.attempt }
+   memory = { 6.GB  * task.attempt }
+   time = { 4.h   * task.attempt }
+   errorStrategy = { task.exitStatus in ((130..145) + 104) ? &#39;retry&#39; : &#39;finish&#39; }
+   maxRetries = 1
+   maxErrors = &#39;-1&#39;
+   withLabel:process_single {
+      cpus = {  1                   }
+      memory = {  1.GB * task.attempt }
+      time = {  4.h  * task.attempt }
+   }
+   withLabel:process_low {
+      cpus = { 2     * task.attempt }
+      memory = { 12.GB * task.attempt }
+      time = { 4.h   * task.attempt }
+   }
+   withLabel:process_medium {
+      cpus = { 6     * task.attempt }
+      memory = { 36.GB * task.attempt }
+      time = { 8.h   * task.attempt }
+   }
+   withLabel:process_high {
+      cpus = { 12    * task.attempt }
+      memory = { 72.GB * task.attempt }
+      time = { 16.h  * task.attempt }
+   }
+   withLabel:process_long {
+      time = { 20.h  * task.attempt }
+   }
+   withLabel:process_high_memory {
+      memory = { 200.GB * task.attempt }
+   }
+   withLabel:error_ignore {
+      errorStrategy = &#39;ignore&#39;
+   }
+   withLabel:error_retry {
+      errorStrategy = &#39;retry&#39;
+      maxRetries = 2
+   }
+   withName:BRACKEN_BRACKEN {
+      errorStrategy = &#39;ignore&#39;
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;${meta.db_params}&quot; }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure34$_closure70@407d2a01
+      }
+      publishDir = [path:{ &quot;${params.outdir}/bracken/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*{.tsv,.txt}&#39;]
+   }
+   withName:CENTRIFUGE_KREPORT {
+      errorStrategy = {task.exitStatus == 255 ? &#39;ignore&#39; : &#39;retry&#39;}
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;${meta.db_params}&quot; }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure46$_closure78@461b38ca
+      }
+      publishDir = [path:{ &quot;${params.outdir}/centrifuge/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{txt}&#39;]
+   }
+   withName:KRAKENTOOLS_COMBINEKREPORTS_CENTRIFUGE {
+      errorStrategy = { task.exitStatus in [255,1] ? &#39;ignore&#39; : &#39;retry&#39; }
+      ext {
+         prefix = { &quot;centrifuge_${meta.id}_combined_reports&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/centrifuge/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{txt}&#39;]
+   }
+   withName:MEGAN_RMA2INFO_TSV {
+      cpus = { 1                   }
+      memory = { 6.GB * task.attempt }
+      time = { 4.h  * task.attempt }
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = &#39;-c2c Taxonomy&#39;
+         prefix = { &quot;${meta.id}&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/malt/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{txt.gz,megan}&#39;]
+   }
+   withName:MEGAN_RMA2INFO_KRONA {
+      cpus = { 1                   }
+      memory = { 6.GB * task.attempt }
+      time = { 4.h  * task.attempt }
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;--read2class Taxonomy&quot; }
+         prefix = { &quot;${meta.id}_${meta.db_name}&quot; }
+      }
+   }
+   withName:FALCO {
+      cpus = { 6                   }
+      memory = { 4.GB * task.attempt }
+      time = { 4.h  * task.attempt }
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}_raw_falco&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/falco/raw&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{html,txt,zip}&#39;]
+   }
+   publishDir = [path:{ &quot;${params.outdir}/${task.process.tokenize(&#39;:&#39;)[-1].tokenize(&#39;_&#39;)[0].toLowerCase()}&quot; }, mode:&#39;copy&#39;, saveAs:{ filename -&gt; filename.equals(&#39;versions.yml&#39;) ? null : filename }]
+   withName:UNTAR {
+      ext {
+         prefix = { &quot;${archive.simpleName}&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/untar/databases&quot; }, mode:&#39;copy&#39;, enabled:false]
+   }
+   withName:FASTQC {
+      ext {
+         args = &#39;--quiet&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}_raw&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/fastqc/raw&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{html,zip}&#39;]
+   }
+   withName:FASTQC_PROCESSED {
+      ext {
+         args = &#39;--quiet&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}_processed&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/fastqc/processed&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{html,zip}&#39;]
+   }
+   withName:FALCO_PROCESSED {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}_processed_falco&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/falco/processed&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{html,txt,zip}&#39;]
+   }
+   withName:FASTP_SINGLE {
+      ext {
+         args = &#39;--length_required 100&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/fastp&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/fastp&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{log,html,json}&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_shortread_hostremoval &amp;&amp; !params.perform_shortread_complexityfilter &amp;&amp; params.perform_shortread_qc &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:FASTP_PAIRED {
+      ext {
+         args = &#39;--detect_adapter_for_pe --length_required 100&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/fastp&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/fastp&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{log,html,json}&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastp.fastq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_shortread_hostremoval &amp;&amp; !params.perform_shortread_complexityfilter &amp;&amp; params.perform_shortread_qc &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:ADAPTERREMOVAL_SINGLE {
+      ext {
+         args = &#39;--minlength 100&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/adapterremoval&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/adapterremoval&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.settings&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*truncated.fastq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_shortread_hostremoval &amp;&amp; !params.perform_shortread_complexityfilter &amp;&amp; params.perform_shortread_qc &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:ADAPTERREMOVAL_PAIRED {
+      ext {
+         args = &#39;--minlength 100&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/adapterremoval&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/adapterremoval&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.settings&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*{truncated.fastq,singleton.truncated}.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_shortread_hostremoval &amp;&amp; !params.perform_shortread_complexityfilter &amp;&amp; params.perform_shortread_qc &amp;&amp; !params.shortread_qc_mergepairs &amp;&amp; params.save_analysis_ready_fastqs ? it : null}]]
+   }
+   withName:NONPAREIL_NONPAREIL {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/nonpareil/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.np{a,c,l,o}&#39;]
+   }
+   withName:NONPAREIL_CURVE {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/nonpareil/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.png&#39;]
+   }
+   withName:NONPAREIL_SET {
+      ext {
+         prefix = { &quot;nonpareil_all_samples_mqc&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/nonpareil/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.png&#39;]
+   }
+   withName:NONPAREIL_NONPAREILCURVESR {
+      ext {
+         prefix = { &quot;nonpareil_all_samples&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/nonpareil/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{json,csv,tsv,pdf}&#39;]
+   }
+   withName:CAT_FASTQ {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_shortread_hostremoval &amp;&amp; !params.perform_shortread_complexityfilter &amp;&amp; params.perform_shortread_qc &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:PORECHOP_PORECHOP {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}_porechop&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/porechop&quot; }, mode:&#39;copy&#39;, pattern:&#39;*_porechop.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/porechop&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.log&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*_porechop.fastq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_longread_hostremoval &amp;&amp; params.longread_qc_skipqualityfilter &amp;&amp; !params.longread_qc_skipadaptertrim &amp;&amp; params.perform_longread_qc &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:PORECHOP_ABI {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}_porechop_abi&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/porechop_abi&quot; }, mode:&#39;copy&#39;, pattern:&#39;*_porechop_abi.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/porechop_abi&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.log&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*porechop_abi.fastq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_longread_hostremoval &amp;&amp; params.longread_qc_skipqualityfilter &amp;&amp; !params.longread_qc_skipadaptertrim &amp;&amp; params.perform_longread_qc &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:FILTLONG {
+      ext {
+         args = &#39;--min_length 1000 --keep_percent 90 --target_bases 500000000&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}_filtered&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/filtlong&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/filtlong&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.log&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_longread_hostremoval &amp;&amp; !params.longread_qc_skipqualityfilter &amp;&amp; params.perform_longread_qc &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:NANOQ {
+      ext {
+         args = &#39;-vv --min-len 1000 --min-qual 7&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}_filtered&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/nanoq&quot; }, mode:&#39;copy&#39;, pattern:&#39;*_filtered.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/nanoq&quot; }, mode:&#39;copy&#39;, pattern:&#39;*_filtered.stats&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*_filtered.fastq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_longread_hostremoval &amp;&amp; !params.longread_qc_skipqualityfilter &amp;&amp; params.perform_longread_qc &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:BBMAP_BBDUK {
+      ext {
+         args = &#39;entropy=0.3 entropywindow=50 entropymask=f&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/bbduk/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{fastq.gz}&#39;, enabled:false], [path:{ &quot;${params.outdir}/bbduk/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.log&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_shortread_hostremoval &amp;&amp; params.shortread_complexityfilter_tool &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:PRINSEQPLUSPLUS {
+      ext {
+         args = &#39;-lc_entropy=0.3 -trim_qual_left=0 -trim_qual_left=0 -trim_qual_window=0 -trim_qual_step=0&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/prinseqplusplus/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*{_good_out.fastq.gz,_good_out_R1.fastq.gz,_good_out_R2.fastq.gz}&#39;, enabled:false], [path:{ &quot;${params.outdir}/prinseqplusplus/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.log&#39;], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*{_good_out.fastq.gz,_good_out_R1.fastq.gz,_good_out_R2.fastq.gz}&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; !params.perform_shortread_hostremoval &amp;&amp; params.shortread_complexityfilter_tool &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:BOWTIE2_BUILD {
+      publishDir = [[path:{ &quot;${params.outdir}/bowtie2/build&quot; }, mode:&#39;copy&#39;, pattern:&#39;bowtie2&#39;, enabled:false]]
+   }
+   withName:BOWTIE2_ALIGN {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/bowtie2/align&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.log&#39;], [path:{ &quot;${params.outdir}/bowtie2/align&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.bam&#39;, enabled:false], [path:{ &quot;${params.outdir}/bowtie2/align&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, enabled:true, pattern:&#39;*.fastq.gz&#39;, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun ) ) &amp;&amp; params.perform_shortread_hostremoval &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:MINIMAP2_INDEX {
+      ext {
+         args = &#39;-x map-ont&#39;
+      }
+      publishDir = [path:{ &quot;${params.outdir}/minimap2/index&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.mmi&#39;, enabled:false]
+   }
+   withName:MINIMAP2_ALIGN {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/minimap2/align&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.bam&#39;, enabled:false]
+   }
+   withName:SAMTOOLS_VIEW {
+      ext {
+         args = &#39;-f 4&#39;
+         prefix = { &quot;${meta.id}_${meta.run_accession}.unmapped&quot; }
+      }
+   }
+   withName:SAMTOOLS_FASTQ {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}.unmapped&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/samtools/fastq&quot; }, mode:&#39;copy&#39;, pattern:&#39;*_other.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fq.gz&#39;, enabled:true, saveAs:{ ( params.perform_runmerging == false || ( params.perform_runmerging &amp;&amp; !meta.is_multirun) ) &amp;&amp; params.perform_longread_hostremoval &amp;&amp; params.save_analysis_ready_fastqs ? it : null }]]
+   }
+   withName:SAMTOOLS_STATS {
+      ext {
+         prefix = { &quot;${meta.id}_${meta.run_accession}&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/samtools/stats&quot; }, mode:&#39;copy&#39;, pattern:&#39;*stats&#39;]
+   }
+   withName:MERGE_RUNS {
+      ext {
+         prefix = { &quot;${meta.id}&quot; }
+      }
+      publishDir = [[path:{ &quot;${params.outdir}/run_merging/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:false], [path:{ &quot;${params.outdir}/analysis_ready_fastqs&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.fastq.gz&#39;, enabled:false]]
+   }
+   withName:MALT_RUN {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;${meta.db_params} -m ${params.malt_mode}&quot; }
+         prefix = { &quot;${meta.db_name}&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/malt/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{rma6,log,sam}&#39;]
+   }
+   withName:KRAKEN2_KRAKEN2 {
+      tag = { &quot;${meta.db_name}|${meta.tool}|${meta.id}&quot; }
+      ext {
+         args = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure32$_closure64@3881b884
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure32$_closure66@1185b0b7
+      }
+      publishDir = [path:{ &quot;${params.outdir}/kraken2/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{txt,fastq.gz}&#39;, saveAs:{  !params.bracken_save_intermediatekraken2 &amp;&amp; meta.tool == &quot;bracken&quot; ? null : it  }]
+   }
+   withName:KRAKEN2_STANDARD_REPORT {
+      tag = { &quot;${meta.db_name}|${meta.tool}|${meta.id}&quot; }
+      ext {
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure33$_closure68@ec70725
+      }
+      publishDir = [path:{ &quot;${params.outdir}/kraken2/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.report.txt&#39;]
+   }
+   withName:BRACKEN_COMBINEBRACKENOUTPUTS {
+      ext {
+         prefix = { &quot;bracken_${meta.id}_combined_reports&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/bracken/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.txt&#39;]
+   }
+   withName:KRAKENTOOLS_COMBINEKREPORTS_KRAKEN {
+      ext {
+         prefix = { &quot;kraken2_${meta.id}_combined_reports&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/kraken2/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.txt&#39;]
+   }
+   withName:KRAKENUNIQ_PRELOADEDKRAKENUNIQ {
+      tag = { &quot;${meta.db_name}|${task.index}&quot; }
+      ext {
+         args = { &quot;${meta.db_params}&quot; }
+         prefix = { &quot;${meta.db_name}.krakenuniq&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/krakenuniq/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{txt,fastq.gz,fasta.gz}&#39;]
+   }
+   withName:KRAKENTOOLS_KREPORT2KRONA {
+      publishDir = [enabled:false, mode:&#39;copy&#39;, pattern:&#39;*.txt&#39;]
+   }
+   withName:KRONA_CLEANUP {
+      ext {
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure39$_closure72@2082e0e4
+      }
+      publishDir = [path:{ &quot;${params.outdir}/krona/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{html}&#39;]
+   }
+   withName:KRONA_KTIMPORTTEXT {
+      ext {
+         prefix = { &quot;${meta.tool}_${meta.id}&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/krona/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{html}&#39;]
+   }
+   withName:KRONA_KTIMPORTTAXONOMY {
+      ext {
+         args = &#39;-i&#39;
+         prefix = { &quot;${meta.tool}_${meta.id}&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/krona/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{html}&#39;]
+   }
+   withName:METAPHLAN_METAPHLAN {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;${meta.db_params}&quot; }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure43$_closure74@15f229e8
+      }
+      publishDir = [path:{ &quot;${params.outdir}/metaphlan/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{biom,txt}&#39;]
+   }
+   withName:METAPHLAN_MERGEMETAPHLANTABLES {
+      ext {
+         prefix = { &quot;metaphlan_${meta.id}_combined_reports&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/metaphlan/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{txt}&#39;]
+   }
+   withName:CENTRIFUGE_CENTRIFUGE {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;${meta.db_params}&quot; }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure45$_closure76@29ce33e9
+      }
+      publishDir = [path:{ &quot;${params.outdir}/centrifuge/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{txt,sam,tab,gz}&#39;]
+   }
+   withName:KAIJU_KAIJU {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;${meta.db_params}&quot; }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure48$_closure80@1f86f7da
+      }
+      publishDir = [path:{ &quot;${params.outdir}/kaiju/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.tsv&#39;]
+   }
+   withName:KAIJU_KAIJU2TABLE_SINGLE {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = {[
+            params.kaiju_expand_viruses ? &quot;-e&quot; : &quot;&quot;
+        ].join(&#39; &#39;).trim() }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure49$_closure82@28b4b10e
+      }
+      publishDir = [path:{ &quot;${params.outdir}/kaiju/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{txt}&#39;]
+   }
+   withName:KAIJU_KAIJU2TABLE_COMBINED {
+      ext {
+         prefix = { &quot;kaiju_${meta.id}_combined_reports&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/kaiju/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{txt}&#39;]
+   }
+   withName:KAIJU_KAIJU2KRONA {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = &#39;-v -u&#39;
+      }
+      publishDir = [path:{ &quot;${params.outdir}/kaiju/&quot; }, enabled:false]
+   }
+   withName:DIAMOND_BLASTX {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;${meta.db_params}&quot; }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure52$_closure84@2c0d7099
+      }
+      publishDir = [path:{ &quot;${params.outdir}/diamond/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{blast,xml,txt,daa,sam,tsv,paf,log}&#39;]
+   }
+   withName:MOTUS_PROFILE {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = {
+            [
+                params.motus_remove_ncbi_ids ? &quot;&quot; : &quot;-p&quot;,
+                params.motus_use_relative_abundance ? &quot;&quot; : &quot;-c&quot;,
+                params.motus_save_mgc_read_counts ?  &quot;-M ${task.ext.prefix}.mgc&quot; : &quot;&quot;
+            ].join(&#39;,&#39;).replaceAll(&#39;,&#39;,&quot; &quot;)
+            }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure53$_closure86@74844f8a
+      }
+      publishDir = [path:{ &quot;${params.outdir}/motus/${meta.db_name}/&quot; }, mode:&#39;copy&#39;]
+   }
+   withName:MOTUS_MERGE {
+      ext {
+         args = { params.standardisation_motus_generatebiom ? &quot;-B&quot; : &quot;&quot; }
+         prefix = { &quot;motus_${meta.id}_combined_reports&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/motus/&quot; }, mode:&#39;copy&#39;]
+   }
+   withName:KMCP_SEARCH {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;${meta.db_params}&quot; }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure55$_closure88@5c945ee7
+      }
+      publishDir = [path:{ &quot;${params.outdir}/kmcp/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, enabled:false]
+   }
+   withName:KMCP_PROFILE {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = { &quot;${meta.db_params}&quot; }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure56$_closure90@51a5a8ba
+      }
+      publishDir = [path:{ &quot;${params.outdir}/kmcp/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{profile}&#39;]
+   }
+   withName:GANON_CLASSIFY {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure57$_closure92@16eb93af
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure57$_closure94@404566e7
+      }
+      publishDir = [path:{ &quot;${params.outdir}/ganon/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{tre,rep,one,all,unc,log}&#39;]
+   }
+   withName:GANON_REPORT {
+      tag = {&quot;${meta.db_name}|${meta.id}&quot;}
+      ext {
+         args = {[
+            &quot;--report-type ${params.ganon_report_type}&quot;,
+            ganon_report_rank != &#39;default&#39; ? &quot;--ranks ${params.ganon_report_rank}&quot; : &quot;&quot;,
+            &quot;--top-percentile ${params.ganon_report_toppercentile}&quot;,
+            &quot;--min-count ${params.ganon_report_mincount}&quot;,
+            &quot;--max-count ${params.ganon_report_maxcount}&quot;
+        ].join(&#39; &#39;).trim() }
+         prefix = Script678F515BC912152A583104ACD4973692$_run_closure1$_closure58$_closure96@3ed87b6e
+      }
+      publishDir = [path:{ &quot;${params.outdir}/ganon/${meta.db_name}/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{tre}&#39;]
+   }
+   withName:GANON_TABLE {
+      ext {
+         prefix = { &quot;ganon_${meta.id}_combined_reports&quot; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/ganon/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.txt&#39;]
+   }
+   withName:TAXPASTA_MERGE {
+      tag = { &quot;${meta.tool}|${meta.id}&quot; }
+      ext {
+         prefix = { &quot;${meta.tool}_${meta.id}&quot; }
+         args = {
+            [
+                params.taxpasta_add_name ?  &quot;--add-name&quot; : &quot;&quot;,
+                params.taxpasta_add_rank ? &quot;--add-rank&quot; : &quot;&quot;,
+                params.taxpasta_add_lineage ? &quot;--add-lineage&quot; : &quot;&quot;,
+                params.taxpasta_add_idlineage ? &quot;--add-id-lineage&quot; : &quot;&quot;,
+                params.taxpasta_add_ranklineage ? &quot;--add-rank-lineage&quot; : &quot;&quot;,
+            ].join(&#39; &#39;).trim()
+            }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/taxpasta/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{tsv,csv,arrow,parquet,biom}&#39;]
+   }
+   withName:TAXPASTA_STANDARDISE {
+      tag = { &quot;${meta.tool}|${meta.id}&quot; }
+      ext {
+         prefix = { &quot;${meta.tool}_${meta.id}&quot; }
+         args = {
+                [
+                    params.taxpasta_add_name ?  &quot;--add-name&quot; : &quot;&quot;,
+                    params.taxpasta_add_rank ? &quot;--add-rank&quot; : &quot;&quot;,
+                    params.taxpasta_add_lineage ? &quot;--add-lineage&quot; : &quot;&quot;,
+                    params.taxpasta_add_idlineage ? &quot;--add-id-lineage&quot; : &quot;&quot;,
+                    params.taxpasta_add_ranklineage ? &quot;--add-rank-lineage&quot; : &quot;&quot;
+                ].join(&#39; &#39;).trim()
+            }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/taxpasta/&quot; }, mode:&#39;copy&#39;, pattern:&#39;*.{tsv,csv,arrow,parquet,biom}&#39;]
+   }
+   withName:MULTIQC {
+      ext {
+         args = { params.multiqc_title ? &quot;--title \&quot;$params.multiqc_title\&quot;&quot; : &#39;&#39; }
+      }
+      publishDir = [path:{ &quot;${params.outdir}/multiqc&quot; }, mode:&#39;copy&#39;, saveAs:{ filename -&gt; filename.equals(&#39;versions.yml&#39;) ? null : filename }]
+   }
+   shell = [&#39;bash&#39;, &#39;-C&#39;, &#39;-e&#39;, &#39;-u&#39;, &#39;-o&#39;, &#39;pipefail&#39;]
+   executor = &#39;azurebatch&#39;
+   queue = &#39;pool-Standard_E16ds_v4-pack&#39;
+}
+
+apptainer {
+   registry = &#39;quay.io&#39;
+}
+
+docker {
+   registry = &#39;quay.io&#39;
+}
+
+podman {
+   registry = &#39;quay.io&#39;
+}
+
+singularity {
+   registry = &#39;quay.io&#39;
+}
+
+charliecloud {
+   registry = &#39;quay.io&#39;
+}
+
+env {
+   PYTHONNOUSERSITE = &#39;1&#39;
+   R_PROFILE_USER = &#39;/.Rprofile&#39;
+   R_ENVIRON_USER = &#39;/.Renviron&#39;
+   JULIA_DEPOT_PATH = &#39;/usr/local/share/julia&#39;
+}
+
+timeline {
+   enabled = true
+   file = &#39;timeline-23Nhgz2D50ZhCR.html&#39;
+}
+
+report {
+   enabled = true
+   file = &#39;az://seqera/results/smoke_scrub_malthe/metagenomics2//pipeline_info/execution_report_2025-08-29_11-33-55.html&#39;
+}
+
+trace {
+   enabled = true
+   file = &#39;az://seqera/results/smoke_scrub_malthe/metagenomics2//pipeline_info/execution_trace_2025-08-29_11-33-55.txt&#39;
+}
+
+dag {
+   enabled = true
+   file = &#39;az://seqera/results/smoke_scrub_malthe/metagenomics2//pipeline_info/pipeline_dag_2025-08-29_11-33-55.html&#39;
+}
+
+manifest {
+   name = &#39;nf-core/taxprofiler&#39;
+   author = &#39;James A. Fellows Yates, Sofia Stamouli, Moritz E. Beber, Lili Andersson-Li, and the nf-core/taxprofiler team&#39;
+   contributors = [[name:&#39;James A. Fellows Yates&#39;, affiliation:&#39;Leibniz Institute for Natural Product Research and Infection Biology - Hans Knöll Institute, Jena, Germany; Max Planck Institute for Evolutionary Anthropology, Leipzig, Germany&#39;, email:&#39;jfy133@gmail.com&#39;, github:&#39;https://github.com/jfy133&#39;, contribution:[&#39;author&#39;, &#39;maintainer&#39;], orcid:&#39;https://orcid.org/0000-0001-5585-6277&#39;], [name:&#39;Sofia Stamouli&#39;, affiliation:&#39;Karolinska Institutet/Karolinska University Hospital/Clinical Genomics SciLifeLab, Solna, Sweden&#39;, email:&#39;&#39;, github:&#39;https://github.com/sofstam&#39;, contribution:[&#39;author&#39;, &#39;maintainer&#39;], orcid:&#39;https://orcid.org/0009-0006-0893-3771&#39;], [name:&#39;Moritz E. Beber&#39;, affiliation:&#39;Unseen Bio ApS, Copenhagen, Denmark​&#39;, email:&#39;&#39;, github:&#39;https://github.com/Midnighter&#39;, contribution:[&#39;author&#39;, &#39;maintainer&#39;], orcid:&#39;https://orcid.org/0000-0003-2406-1978&#39;], [name:&#39;Lili Andersson-Li&#39;, affiliation:&#39;Karolinska Institutet/Karolinska University Hospital/Clinical Genomics SciLifeLab, Solna, Sweden&#39;, email:&#39;&#39;, github:&#39;https://github.com/LilyAnderssonLee&#39;, contribution:[&#39;author&#39;, &#39;maintainer&#39;], orcid:&#39;https://orcid.org/0000-0002-6059-4192&#39;], [name:&#39;and the nf-core/taxprofiler team&#39;, affiliation:&#39;nf-core community&#39;, email:&#39;&#39;, github:&#39;https://github.com/nf-core&#39;, contribution:[&#39;contributor&#39;], orcid:&#39;&#39;]]
+   homePage = &#39;https://github.com/nf-core/taxprofiler&#39;
+   description = &#39;Taxonomic classification and profiling of shotgun short- and long-read metagenomic data&#39;
+   mainScript = &#39;main.nf&#39;
+   defaultBranch = &#39;master&#39;
+   nextflowVersion = &#39;!&gt;=24.04.2&#39;
+   version = &#39;1.2.3&#39;
+   doi = &#39;10.1101/2023.10.20.563221&#39;
+}
+
+plugins = [&#39;nf-schema@2.3.0&#39;]
+
+validation {
+   monochromeLogs = false
+   help {
+      enabled = true
+      command = &#39;nextflow run nf-core/taxprofiler -profile &lt;docker/singularity/.../institute&gt; --input samplesheet.csv --outdir &lt;OUTDIR&gt;&#39;
+      fullParameter = &#39;help_full&#39;
+      showHiddenParameter = &#39;show_hidden&#39;
+      beforeText = &#39;
+-[2m----------------------------------------------------[0m-
+                                        [0;32m,--.[0;30m/[0;32m,-.[0m
+[0;34m        ___     __   __   __   ___     [0;32m/,-._.--~&#39;[0m
+[0;34m  |\ | |__  __ /  ` /  \ |__) |__         [0;33m}  {[0m
+[0;34m  | \| |       \__, \__/ |  \ |___     [0;32m\`-._,-`-,[0m
+                                        [0;32m`._,._,&#39;[0m
+[0;35m  nf-core/taxprofiler 1.2.3[0m
+-[2m----------------------------------------------------[0m-
+&#39;
+      afterText = &#39;
+* The pipeline
+    https://doi.org/10.1101/2023.10.20.563221
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/taxprofiler/blob/master/CITATIONS.md
+&#39;
+   }
+   summary {
+      beforeText = &#39;
+-[2m----------------------------------------------------[0m-
+                                        [0;32m,--.[0;30m/[0;32m,-.[0m
+[0;34m        ___     __   __   __   ___     [0;32m/,-._.--~&#39;[0m
+[0;34m  |\ | |__  __ /  ` /  \ |__) |__         [0;33m}  {[0m
+[0;34m  | \| |       \__, \__/ |  \ |___     [0;32m\`-._,-`-,[0m
+                                        [0;32m`._,._,&#39;[0m
+[0;35m  nf-core/taxprofiler 1.2.3[0m
+-[2m----------------------------------------------------[0m-
+&#39;
+      afterText = &#39;
+* The pipeline
+    https://doi.org/10.1101/2023.10.20.563221
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/taxprofiler/blob/master/CITATIONS.md
+&#39;
+   }
+}
+
+azure {
+   storage {
+      accountName = &#39;workstoragedls&#39;
+   }
+   batch {
+      location = &#39;northeurope&#39;
+      accountName = &#39;batchseqeraprod&#39;
+      copyToolInstallMode = &#39;task&#39;
+      autoPoolMode = false
+      allowPoolCreation = false
+      pools {
+         &#39;pool-Standard_E16ds_v4-pack&#39; {
+            vmType = &#39;standard_e16ds_v4&#39;
+            vmCount = 0
+         }
+      }
+   }
+   managedIdentity {
+      clientId = &#39;25959159-120b-4e8e-a63a-dd9be7901124&#39;
+   }
+}
+
+workDir = &#39;az://seqera/scratch/2Fash9z9564Wul&#39;
+runName = &#39;awesome_goldberg_2&#39;
+resume = &#39;22e5d9d9-1203-41a0-b6ff-e986085fd3be&#39;
+
+tower {
+   enabled = true
+   endpoint = &#39;https://api.cloud.seqera.io&#39;
+}
+
+cloudcache {
+   enabled = true
+   path = &#39;az://seqera/.cache&#39;
+}
+
+</pre></div>
+</div>
+</details></section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../quantms/README.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Bigbio/Quantms</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../about.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Science Platform at BRIGHT</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">nf-core/taxprofiler</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline">Taxonomical profiling using nf-core/taxprofiler pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-samplesheet-csv-as">Create samplesheet.csv as:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-databases-csv-sheet-as">Create a databases.csv sheet as:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-command-line-to-run-the-pipeline-outside-seqera">Example of Command line to run the pipeline outside Seqera</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#worth-noticing">Worth noticing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seqera-platform">Seqera platform</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#needed-to-change-vmtype-that-in-the-nextflow-config">Needed to change vmType that in the nextflow.config:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolved-configuration-on-seqera">Resolved configuration on Seqera</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Henry Webel
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, BRIGHT, Informatics Platform, DSP.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
