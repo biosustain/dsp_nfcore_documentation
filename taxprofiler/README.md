@@ -80,7 +80,7 @@ nextflow run nf-core/taxprofiler \
    -resume
 ```
 
-# Worth noticing
+## Worth noticing
 
 - You need to add `--shortread_qc_minlength 100` to require a minimum length for read
   after quality control
