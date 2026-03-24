@@ -10,7 +10,7 @@ produces standardised output tables for facilitating results comparison between
 different tools and databases.
 
 You can find a more exhaustive description and running instructions in here:
-https://nf-co.re/taxprofiler/1.2.6
+[nf-co.re/taxprofiler](https://nf-co.re/taxprofiler).
 
 Here we provide with a small manual to how to prepare, for running the pipeline and
 running it in the Microsoft Azure environment.
@@ -38,7 +38,7 @@ The databases will be store in the corresponding data lake folder called databas
 Until then you have to download and prepare the databases yourself.
 
 Files for Metaphlan were download from:
-http://cmprod1.cibio.unitn.it/databases/MetaPhlAn/metaphlan_databases/
+[cmprod1.cibio.unitn.it/databases/MetaPhlAn/metaphlan_databases](http://cmprod1.cibio.unitn.it/databases/MetaPhlAn/metaphlan_databases/)
 
 For mOTUs:
 Needed to prepare the mOTUs database as follows:
@@ -250,7 +250,7 @@ Seqera give a resolved configuration of the parameters and all settings with res
 to the profile setting up the compute environment.
 
 <details>
-<summary>Resolved parameters and profile configuration of a taxprofiler 1.2.3 (JSON)
+<summary>Resolved parameters and profile configuration of a taxprofiler 1.2.3
 on Azure</summary>
 
 ```
