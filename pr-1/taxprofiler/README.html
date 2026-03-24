@@ -16,31 +16,34 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'taxprofiler/README';</script>
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -49,6 +52,7 @@
     <link rel="prev" title="Bigbio/Quantms" href="../quantms/README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -64,19 +68,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -84,7 +77,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -92,8 +84,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -109,7 +101,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </ul></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -194,9 +183,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -294,7 +288,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -308,25 +302,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -350,9 +336,9 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">nf-core/taxprofiler</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline">Taxonomical profiling using nf-core/taxprofiler pipeline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-samplesheet-csv-as">Create samplesheet.csv as:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-databases-csv-sheet-as">Create a databases.csv sheet as:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline">Taxonomical profiling using <code class="docutils literal notranslate"><span class="pre">nf-core/taxprofiler</span></code> pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-samplesheet-csv-as">Create <code class="docutils literal notranslate"><span class="pre">samplesheet.csv</span></code> as:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-databases-csv-sheet-as">Create a <code class="docutils literal notranslate"><span class="pre">databases.csv</span></code> sheet as:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-command-line-to-run-the-pipeline-outside-seqera">Example of Command line to run the pipeline outside Seqera</a></li>
 </ul>
 </li>
@@ -378,14 +364,20 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="nf-core-taxprofiler">
 <h1>nf-core/taxprofiler<a class="headerlink" href="#nf-core-taxprofiler" title="Link to this heading">#</a></h1>
 <section id="taxonomical-profiling-using-nf-core-taxprofiler-pipeline">
-<h2>Taxonomical profiling using nf-core/taxprofiler pipeline<a class="headerlink" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline" title="Link to this heading">#</a></h2>
-<p>nf-core/taxprofiler is a bioinformatics best-practice analysis pipeline for taxonomic classification and profiling of shotgun short- and long-read metagenomic data. It allows for in-parallel taxonomic identification of reads or taxonomic abundance estimation with multiple classification and profiling tools against multiple databases, and produces standardised output tables for facilitating results comparison between different tools and databases.</p>
+<h2>Taxonomical profiling using <code class="docutils literal notranslate"><span class="pre">nf-core/taxprofiler</span></code> pipeline<a class="headerlink" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline" title="Link to this heading">#</a></h2>
+<p>nf-core/taxprofiler is a bioinformatics best-practice analysis pipeline for taxonomic
+classification and profiling of shotgun short- and long-read metagenomic data. It allows
+for in-parallel taxonomic identification of reads or taxonomic abundance estimation
+with multiple classification and profiling tools against multiple databases, and
+produces standardised output tables for facilitating results comparison between
+different tools and databases.</p>
 <p>You can find a more exhaustive description and running instructions in here:
 https://nf-co.re/taxprofiler/1.2.6</p>
-<p>Here we provide with a small manual to how to prepare, for running the pipeline and running it in the Microsoft Azure environment.</p>
+<p>Here we provide with a small manual to how to prepare, for running the pipeline and
+running it in the Microsoft Azure environment.</p>
 </section>
 <section id="create-samplesheet-csv-as">
-<h2>Create samplesheet.csv as:<a class="headerlink" href="#create-samplesheet-csv-as" title="Link to this heading">#</a></h2>
+<h2>Create <code class="docutils literal notranslate"><span class="pre">samplesheet.csv</span></code> as:<a class="headerlink" href="#create-samplesheet-csv-as" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sample</span><span class="p">,</span><span class="n">run_accession</span><span class="p">,</span><span class="n">instrument_platform</span><span class="p">,</span><span class="n">fastq_1</span><span class="p">,</span><span class="n">fastq_2</span><span class="p">,</span><span class="n">fasta</span>
 <span class="mi">2612</span><span class="p">,</span><span class="n">run1</span><span class="p">,</span><span class="n">ILLUMINA</span><span class="p">,</span><span class="mi">2612</span><span class="n">_run1_R1</span><span class="o">.</span><span class="n">fq</span><span class="o">.</span><span class="n">gz</span><span class="p">,,</span>
 <span class="mi">2612</span><span class="p">,</span><span class="n">run2</span><span class="p">,</span><span class="n">ILLUMINA</span><span class="p">,</span><span class="mi">2612</span><span class="n">_run2_R1</span><span class="o">.</span><span class="n">fq</span><span class="o">.</span><span class="n">gz</span><span class="p">,,</span>
@@ -395,53 +387,81 @@ https://nf-co.re/taxprofiler/1.2.6</p>
 </div>
 </section>
 <section id="create-a-databases-csv-sheet-as">
-<h2>Create a databases.csv sheet as:<a class="headerlink" href="#create-a-databases-csv-sheet-as" title="Link to this heading">#</a></h2>
+<h2>Create a <code class="docutils literal notranslate"><span class="pre">databases.csv</span></code> sheet as:<a class="headerlink" href="#create-a-databases-csv-sheet-as" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tool</span><span class="p">,</span><span class="n">db_name</span><span class="p">,</span><span class="n">db_params</span><span class="p">,</span><span class="n">db_path</span>
 <span class="n">metaphlan</span><span class="p">,</span><span class="n">db1</span><span class="p">,,</span><span class="n">az</span><span class="p">:</span><span class="o">//</span><span class="n">orange</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">metaphlan_db</span>
 <span class="n">motu</span><span class="p">,</span><span class="n">db2</span><span class="p">,,</span><span class="n">az</span><span class="p">:</span><span class="o">//</span><span class="n">orange</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">db_mOTU</span>
 <span class="o">...</span>
 </pre></div>
 </div>
-<p>The databases will be store in the corresponding data lake folder called databases. Until then you have to download and prepare the databases yourself.</p>
+<p>The databases will be store in the corresponding data lake folder called databases.
+Until then you have to download and prepare the databases yourself.</p>
 <p>Files for Metaphlan were download from:
 http://cmprod1.cibio.unitn.it/databases/MetaPhlAn/metaphlan_databases/</p>
 <p>For mOTUs:
 Needed to prepare the mOTUs database as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">motus</span>
-<span class="n">conda</span> <span class="n">activate</span> <span class="n">motus</span>
-<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">bioconda</span> <span class="n">motus</span>
-<span class="n">motus</span> <span class="n">downloadDB</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>motus
+conda<span class="w"> </span>activate<span class="w"> </span>motus
+conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>bioconda<span class="w"> </span>motus
+motus<span class="w"> </span>downloadDB
 </pre></div>
 </div>
-<p>It got copied the database locally in here: /Users/apca/anaconda3/envs/motus/lib/python3.9/site-packages/motus/db_mOTU and I passed this dir to databases.csv</p>
+<p>It got copied the database locally in here:
+<code class="docutils literal notranslate"><span class="pre">/Users/apca/anaconda3/envs/motus/lib/python3.9/site-packages/motus/db_mOTU</span></code> and
+I passed this dir to <code class="docutils literal notranslate"><span class="pre">databases.csv</span></code>.</p>
 </section>
 <section id="example-of-command-line-to-run-the-pipeline-outside-seqera">
 <h2>Example of Command line to run the pipeline outside Seqera<a class="headerlink" href="#example-of-command-line-to-run-the-pipeline-outside-seqera" title="Link to this heading">#</a></h2>
 <p>Using Docker as contanerizing system
 Using only Metaphlan as reference database</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nextflow</span> <span class="n">run</span> <span class="n">nf</span><span class="o">-</span><span class="n">core</span><span class="o">/</span><span class="n">taxprofiler</span> <span class="o">-</span><span class="n">profile</span> <span class="n">az_test</span><span class="p">,</span><span class="n">docker</span> <span class="o">--</span><span class="nb">input</span> <span class="n">samplesheet</span><span class="o">.</span><span class="n">csv</span> <span class="o">--</span><span class="n">databases</span> <span class="n">databases</span><span class="o">.</span><span class="n">csv</span> <span class="o">--</span><span class="n">outdir</span> <span class="n">results_100bp</span> <span class="o">--</span><span class="n">perform_shortread_qc</span> <span class="o">--</span><span class="n">shortread_qc_tool</span> <span class="n">adapterremoval</span> <span class="o">--</span><span class="n">save_analysis_ready_fastqs</span> <span class="o">--</span><span class="n">shortread_qc_minlength</span> <span class="mi">100</span> <span class="o">--</span><span class="n">perform_shortread_complexityfilter</span> <span class="o">--</span><span class="n">perform_shortread_hostremoval</span> <span class="o">--</span><span class="n">hostremoval_reference</span> <span class="n">az</span><span class="p">:</span><span class="o">//</span><span class="n">masldmice</span><span class="o">/</span><span class="n">host_genome</span><span class="o">/</span><span class="n">GCF_000001635</span><span class="mf">.27</span><span class="n">_GRCm39_genomic</span><span class="o">.</span><span class="n">fna</span> <span class="o">--</span><span class="n">perform_runmerging</span> <span class="o">--</span><span class="n">run_metaphlan</span> <span class="o">--</span><span class="n">run_profile_standardisation</span> <span class="o">-</span><span class="n">w</span> <span class="n">az</span><span class="p">:</span><span class="o">//</span><span class="n">masldmice</span><span class="o">/</span><span class="n">work</span> <span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">tower</span> <span class="o">-</span><span class="n">resume</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nextflow<span class="w"> </span>run<span class="w"> </span>nf-core/taxprofiler<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-profile<span class="w"> </span>az_test,docker<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--input<span class="w"> </span>samplesheet.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--databases<span class="w"> </span>databases.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--outdir<span class="w"> </span>results_100bp<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--perform_shortread_qc<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--shortread_qc_tool<span class="w"> </span>adapterremoval<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--save_analysis_ready_fastqs<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--shortread_qc_minlength<span class="w"> </span><span class="m">100</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--perform_shortread_complexityfilter<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--perform_shortread_hostremoval<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--hostremoval_reference<span class="w"> </span>az://masldmice/host_genome/GCF_000001635.27_GRCm39_genomic.fna<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--perform_runmerging<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--run_metaphlan<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--run_profile_standardisation<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-w<span class="w"> </span>az://masldmice/work<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-with-tower<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>-resume
 </pre></div>
 </div>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="worth-noticing">
 <h1>Worth noticing<a class="headerlink" href="#worth-noticing" title="Link to this heading">#</a></h1>
-<p>You need to add –shortread_qc_minlength 100 to require a minimum length for read after quality control
-You need to add –save_analysis_ready_fastqs to save the qc filetered reads before they go into classification or profiling
-You need to add –perform_runmerging to merge different lanes of the same sample
-You need to add –run_profile_standardisation so that all metaphlan profile of each sample get combined in a single report (This may be changed soon, follow issue: https://github.com/nf-core/taxprofiler/issues/494)</p>
+<ul class="simple">
+<li><p>You need to add <code class="docutils literal notranslate"><span class="pre">--shortread_qc_minlength</span> <span class="pre">100</span></code> to require a minimum length for read
+after quality control</p></li>
+<li><p>You need to add <code class="docutils literal notranslate"><span class="pre">--save_analysis_ready_fastqs</span></code> to save the qc filetered reads before
+they go into classification or profiling</p></li>
+<li><p>You need to add <code class="docutils literal notranslate"><span class="pre">--perform_runmerging</span></code> to merge different lanes of the same sample</p></li>
+<li><p>You need to add <code class="docutils literal notranslate"><span class="pre">--run_profile_standardisation</span></code> so that all metaphlan profile of
+each sample get combined in a single report (This may be changed soon, follow issue:
+<a class="reference external" href="https://github.com/nf-core/taxprofiler/issues/494" rel="noreferrer" target="_blank">taxprofiler#494</a>)</p></li>
+</ul>
 <section id="seqera-platform">
 <h2>Seqera platform<a class="headerlink" href="#seqera-platform" title="Link to this heading">#</a></h2>
-<p>Notice that one parameter tells the pipeline to be monitored by Seqera platform (-with-tower)
-To do that login to Seqera platform and create a token (User tokens) clicking on the User settings button in the upper-right corner.
-Once created, copy it and export it in your terminal:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">TOWER_ACCESS_TOKEN</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">token</span><span class="o">&gt;</span>
+<p>Notice that one parameter tells the pipeline to be monitored by Seqera platform
+(<code class="docutils literal notranslate"><span class="pre">-with-tower</span></code>). To do that login to Seqera platform and create a token (User tokens)
+clicking on the User settings button in the upper-right corner.</p>
+<p>Once created, copy it and export it in your terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">TOWER_ACCESS_TOKEN</span><span class="o">=</span>&lt;your<span class="w"> </span>token&gt;
 </pre></div>
 </div>
 </section>
 <section id="needed-to-change-vmtype-that-in-the-nextflow-config">
 <h2>Needed to change vmType that in the nextflow.config:<a class="headerlink" href="#needed-to-change-vmtype-that-in-the-nextflow-config" title="Link to this heading">#</a></h2>
-<p>To meet the requirement of 12 CPUs and 72 GB of memory, we used “Standard_E16s_v3” with 16 cpus and 128GB memory</p>
+<p>To meet the requirement of 12 CPUs and 72 GB of memory, we used <code class="docutils literal notranslate"><span class="pre">Standard_E16s_v3</span></code>
+with 16 cpus and 128GB memory</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pools</span> <span class="p">{</span>
     <span class="n">auto</span> <span class="p">{</span>
         <span class="n">autoScale</span> <span class="o">=</span> <span class="n">true</span>
@@ -464,112 +484,110 @@ Once created, copy it and export it in your terminal:</p>
 <p>These are the parameters of the last succesful run</p>
 <details>
 <summary>All parameters of quantms 1.6.0 (JSON)</summary>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-    
-    <span class="s2">&quot;shortread_complexityfilter_prinseqplusplus_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;entropy&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;custom_config_base&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/nf-core/configs/master&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;save_analysis_ready_fastqs&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-    <span class="s2">&quot;malt_generate_megansummary&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;plaintext_email&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;malt_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;BlastN&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;diamond_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_complexityfilter_prinseqplusplus_dustscore&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="s2">&quot;kaiju_taxon_rank&quot;</span><span class="p">:</span> <span class="s2">&quot;species&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;standardisation_taxpasta_format&quot;</span><span class="p">:</span> <span class="s2">&quot;tsv&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;databases&quot;</span><span class="p">:</span> <span class="s2">&quot;az://seqera/raw/projectname/data/databases.csv&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;run_kmcp&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;krakenuniq_ram_chunk_size&quot;</span><span class="p">:</span> <span class="s2">&quot;16G&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;ganon_report_mincount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;run_kraken2&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;publish_dir_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;copy&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;az://seqera/raw/projectname/data/Metagenomics2/samplesheet_metagenomics2.csv&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;perform_shortread_hostremoval&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;krakenuniq_batch_size&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_qc_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;adapterremoval&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;run_metaphlan&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-    <span class="s2">&quot;preprocessing_qc_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;fastqc&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;motus_save_mgc_read_counts&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_qc_mergepairs&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;kraken2_save_readclassifications&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;taxpasta_add_name&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;ganon_report_maxcount&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;standardisation_motus_generatebiom&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_complexityfilter_fastp_threshold&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_complexityfilter_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;bbduk&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;save_preprocessed_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;diamond_output_format&quot;</span><span class="p">:</span> <span class="s2">&quot;tsv&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;custom_config_version&quot;</span><span class="p">:</span> <span class="s2">&quot;master&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ganon_report_type&quot;</span><span class="p">:</span> <span class="s2">&quot;reads&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_qc_minlength&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-    <span class="s2">&quot;run_centrifuge&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_qc_skipadaptertrim&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;longread_qc_qualityfilter_minlength&quot;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span>
-    <span class="s2">&quot;run_profile_standardisation&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;perform_shortread_qc&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-    <span class="s2">&quot;ganon_report_rank&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;taxpasta_add_lineage&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;perform_shortread_redundancyestimation&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;run_krona&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;motus_remove_ncbi_ids&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;malt_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;save_runmerged_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;outdir&quot;</span><span class="p">:</span> <span class="s2">&quot;az://seqera/results/smoke_scrub_malthe/metagenomics2/&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;pipelines_testdata_base_path&quot;</span><span class="p">:</span> <span class="s2">&quot;https://raw.githubusercontent.com/nf-core/test-datasets/&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;help&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_complexityfilter_bbduk_mask&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;centrifuge_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;save_hostremoval_bam&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;perform_runmerging&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;run_bracken&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;kmcp_save_search&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_complexityfilter_bbduk_windowsize&quot;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
-    <span class="s2">&quot;help_full&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;monochrome_logs&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;ganon_report_toppercentile&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">&quot;ganon_save_readclassifications&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;max_multiqc_email_size&quot;</span><span class="p">:</span> <span class="s2">&quot;25.MB&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_qc_dedup&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;save_complexityfiltered_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;longread_filter_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;nanoq&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;validate_params&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-    <span class="s2">&quot;kaiju_expand_viruses&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;run_diamond&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;skip_preprocessing_qc&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;krakenuniq_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;perform_longread_qc&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_qc_includeunmerged&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;trace_report_suffix&quot;</span><span class="p">:</span> <span class="s2">&quot;2025-08-29_11-33-52&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_redundancyestimation_mode&quot;</span><span class="p">:</span> <span class="s2">&quot;kmer&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;run_ganon&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;longread_adapterremoval_tool&quot;</span><span class="p">:</span> <span class="s2">&quot;porechop_abi&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;taxpasta_ignore_errors&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;longread_qc_skipadaptertrim&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;shortread_complexityfilter_entropy&quot;</span><span class="p">:</span> <span class="mf">0.3</span><span class="p">,</span>
-    <span class="s2">&quot;multiqc_title&quot;</span><span class="p">:</span> <span class="s2">&quot;multiQC_metagenomics2&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;kraken2_save_minimizers&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;longread_qc_qualityfilter_minquality&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
-    <span class="s2">&quot;krakenuniq_save_readclassifications&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;longread_qc_skipqualityfilter&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;run_kaiju&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;kraken2_save_reads&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;motus_use_relative_abundance&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;run_motus&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;save_hostremoval_index&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;run_krakenuniq&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;show_hidden&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;longread_qc_qualityfilter_targetbases&quot;</span><span class="p">:</span> <span class="mi">500000000</span><span class="p">,</span>
-    <span class="s2">&quot;bracken_save_intermediatekraken2&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;taxpasta_add_rank&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;perform_shortread_complexityfilter&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-    <span class="s2">&quot;taxpasta_add_ranklineage&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;perform_longread_hostremoval&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;save_untarred_databases&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;longread_qc_qualityfilter_keeppercent&quot;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
-    <span class="s2">&quot;taxpasta_add_idlineage&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;run_malt&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
-    <span class="s2">&quot;save_hostremoval_unmapped&quot;</span><span class="p">:</span> <span class="n">false</span>
-
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;shortread_complexityfilter_prinseqplusplus_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;entropy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;custom_config_base&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/nf-core/configs/master&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;save_analysis_ready_fastqs&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;malt_generate_megansummary&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;plaintext_email&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;malt_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;BlastN&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;diamond_save_reads&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_complexityfilter_prinseqplusplus_dustscore&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;kaiju_taxon_rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;standardisation_taxpasta_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tsv&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;databases&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;az://seqera/raw/projectname/data/databases.csv&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_kmcp&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;krakenuniq_ram_chunk_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;16G&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ganon_report_mincount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_kraken2&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;publish_dir_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;copy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;az://seqera/raw/projectname/data/Metagenomics2/samplesheet_metagenomics2.csv&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;perform_shortread_hostremoval&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;krakenuniq_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_qc_tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;adapterremoval&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_metaphlan&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;preprocessing_qc_tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fastqc&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;motus_save_mgc_read_counts&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_qc_mergepairs&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;kraken2_save_readclassifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;taxpasta_add_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ganon_report_maxcount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;standardisation_motus_generatebiom&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_complexityfilter_fastp_threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_complexityfilter_tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;bbduk&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;save_preprocessed_reads&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;diamond_output_format&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tsv&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;custom_config_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;master&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ganon_report_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;reads&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_qc_minlength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_centrifuge&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_qc_skipadaptertrim&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;longread_qc_qualityfilter_minlength&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_profile_standardisation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;perform_shortread_qc&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ganon_report_rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;taxpasta_add_lineage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;perform_shortread_redundancyestimation&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_krona&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;motus_remove_ncbi_ids&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;malt_save_reads&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;save_runmerged_reads&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;outdir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;az://seqera/results/smoke_scrub_malthe/metagenomics2/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;pipelines_testdata_base_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://raw.githubusercontent.com/nf-core/test-datasets/&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;help&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_complexityfilter_bbduk_mask&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;centrifuge_save_reads&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;save_hostremoval_bam&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;perform_runmerging&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_bracken&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;kmcp_save_search&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_complexityfilter_bbduk_windowsize&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;help_full&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;monochrome_logs&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ganon_report_toppercentile&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;ganon_save_readclassifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;max_multiqc_email_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;25.MB&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_qc_dedup&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;save_complexityfiltered_reads&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;longread_filter_tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nanoq&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;validate_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;kaiju_expand_viruses&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_diamond&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;skip_preprocessing_qc&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;krakenuniq_save_reads&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;perform_longread_qc&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_qc_includeunmerged&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;trace_report_suffix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-08-29_11-33-52&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_redundancyestimation_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kmer&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_ganon&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;longread_adapterremoval_tool&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;porechop_abi&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;taxpasta_ignore_errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;longread_qc_skipadaptertrim&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;shortread_complexityfilter_entropy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;multiqc_title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;multiQC_metagenomics2&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;kraken2_save_minimizers&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;longread_qc_qualityfilter_minquality&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;krakenuniq_save_readclassifications&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;longread_qc_skipqualityfilter&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_kaiju&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;kraken2_save_reads&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;motus_use_relative_abundance&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_motus&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;save_hostremoval_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_krakenuniq&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;show_hidden&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;longread_qc_qualityfilter_targetbases&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500000000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;bracken_save_intermediatekraken2&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;taxpasta_add_rank&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;perform_shortread_complexityfilter&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;taxpasta_add_ranklineage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;perform_longread_hostremoval&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;save_untarred_databases&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;longread_qc_qualityfilter_keeppercent&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;taxpasta_add_idlineage&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;run_malt&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;save_hostremoval_unmapped&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1364,7 +1382,8 @@ cloudcache {
 
 </pre></div>
 </div>
-</details></section>
+</details>
+</section>
 </section>
 
 
@@ -1403,19 +1422,21 @@ cloudcache {
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">nf-core/taxprofiler</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline">Taxonomical profiling using nf-core/taxprofiler pipeline</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-samplesheet-csv-as">Create samplesheet.csv as:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-databases-csv-sheet-as">Create a databases.csv sheet as:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline">Taxonomical profiling using <code class="docutils literal notranslate"><span class="pre">nf-core/taxprofiler</span></code> pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-samplesheet-csv-as">Create <code class="docutils literal notranslate"><span class="pre">samplesheet.csv</span></code> as:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-databases-csv-sheet-as">Create a <code class="docutils literal notranslate"><span class="pre">databases.csv</span></code> sheet as:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-command-line-to-run-the-pipeline-outside-seqera">Example of Command line to run the pipeline outside Seqera</a></li>
 </ul>
 </li>
@@ -1475,8 +1496,8 @@ By Henry Webel
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
