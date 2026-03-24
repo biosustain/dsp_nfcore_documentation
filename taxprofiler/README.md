@@ -1,15 +1,22 @@
 # nf-core/taxprofiler
 
-## Taxonomical profiling using nf-core/taxprofiler pipeline
+## Taxonomical profiling using `nf-core/taxprofiler` pipeline
 
-nf-core/taxprofiler is a bioinformatics best-practice analysis pipeline for taxonomic classification and profiling of shotgun short- and long-read metagenomic data. It allows for in-parallel taxonomic identification of reads or taxonomic abundance estimation with multiple classification and profiling tools against multiple databases, and produces standardised output tables for facilitating results comparison between different tools and databases.
+nf-core/taxprofiler is a bioinformatics best-practice analysis pipeline for taxonomic
+classification and profiling of shotgun short- and long-read metagenomic data. It allows
+for in-parallel taxonomic identification of reads or taxonomic abundance estimation
+with multiple classification and profiling tools against multiple databases, and
+produces standardised output tables for facilitating results comparison between
+different tools and databases.
 
 You can find a more exhaustive description and running instructions in here:
 https://nf-co.re/taxprofiler/1.2.6
 
-Here we provide with a small manual to how to prepare, for running the pipeline and running it in the Microsoft Azure environment.
+Here we provide with a small manual to how to prepare, for running the pipeline and
+running it in the Microsoft Azure environment.
 
-## Create samplesheet.csv as:
+## Create `samplesheet.csv` as:
+
 ```
 sample,run_accession,instrument_platform,fastq_1,fastq_2,fasta
 2612,run1,ILLUMINA,2612_run1_R1.fq.gz,,
@@ -18,7 +25,8 @@ sample,run_accession,instrument_platform,fastq_1,fastq_2,fasta
 ...
 ```
 
-## Create a databases.csv sheet as:
+## Create a `databases.csv` sheet as:
+
 ```
 tool,db_name,db_params,db_path
 metaphlan,db1,,az://orange/databases/metaphlan_db
@@ -26,7 +34,8 @@ motu,db2,,az://orange/databases/db_mOTU
 ...
 ```
 
-The databases will be store in the corresponding data lake folder called databases. Until then you have to download and prepare the databases yourself.
+The databases will be store in the corresponding data lake folder called databases.
+Until then you have to download and prepare the databases yourself.
 
 Files for Metaphlan were download from:
 http://cmprod1.cibio.unitn.it/databases/MetaPhlAn/metaphlan_databases/
@@ -34,38 +43,71 @@ http://cmprod1.cibio.unitn.it/databases/MetaPhlAn/metaphlan_databases/
 For mOTUs:
 Needed to prepare the mOTUs database as follows:
 
-```
+```bash
 conda create --name motus
 conda activate motus
 conda install -c bioconda motus
 motus downloadDB
 ```
-It got copied the database locally in here: /Users/apca/anaconda3/envs/motus/lib/python3.9/site-packages/motus/db_mOTU and I passed this dir to databases.csv
+
+It got copied the database locally in here:
+`/Users/apca/anaconda3/envs/motus/lib/python3.9/site-packages/motus/db_mOTU` and
+I passed this dir to `databases.csv`.
 
 ## Example of Command line to run the pipeline outside Seqera
 
 Using Docker as contanerizing system
 Using only Metaphlan as reference database
 
+```bash
+nextflow run nf-core/taxprofiler \
+   -profile az_test,docker \
+   --input samplesheet.csv \
+   --databases databases.csv \
+   --outdir results_100bp \
+   --perform_shortread_qc \
+   --shortread_qc_tool adapterremoval \
+   --save_analysis_ready_fastqs \
+   --shortread_qc_minlength 100 \
+   --perform_shortread_complexityfilter \
+   --perform_shortread_hostremoval \
+   --hostremoval_reference az://masldmice/host_genome/GCF_000001635.27_GRCm39_genomic.fna \
+   --perform_runmerging \
+   --run_metaphlan \
+   --run_profile_standardisation \
+   -w az://masldmice/work \
+   -with-tower \
+   -resume
 ```
-nextflow run nf-core/taxprofiler -profile az_test,docker --input samplesheet.csv --databases databases.csv --outdir results_100bp --perform_shortread_qc --shortread_qc_tool adapterremoval --save_analysis_ready_fastqs --shortread_qc_minlength 100 --perform_shortread_complexityfilter --perform_shortread_hostremoval --hostremoval_reference az://masldmice/host_genome/GCF_000001635.27_GRCm39_genomic.fna --perform_runmerging --run_metaphlan --run_profile_standardisation -w az://masldmice/work -with-tower -resume
-```
+
 # Worth noticing
-You need to add --shortread_qc_minlength 100 to require a minimum length for read after quality control
-You need to add --save_analysis_ready_fastqs to save the qc filetered reads before they go into classification or profiling
-You need to add --perform_runmerging to merge different lanes of the same sample
-You need to add --run_profile_standardisation so that all metaphlan profile of each sample get combined in a single report (This may be changed soon, follow issue: https://github.com/nf-core/taxprofiler/issues/494)
+
+- You need to add `--shortread_qc_minlength 100` to require a minimum length for read
+  after quality control
+- You need to add `--save_analysis_ready_fastqs` to save the qc filetered reads before
+  they go into classification or profiling
+- You need to add `--perform_runmerging` to merge different lanes of the same sample
+- You need to add `--run_profile_standardisation` so that all metaphlan profile of
+  each sample get combined in a single report (This may be changed soon, follow issue:
+  [taxprofiler#494](https://github.com/nf-core/taxprofiler/issues/494))
 
 ## Seqera platform
-Notice that one parameter tells the pipeline to be monitored by Seqera platform (-with-tower)
-To do that login to Seqera platform and create a token (User tokens) clicking on the User settings button in the upper-right corner. 
-Once created, copy it and export it in your terminal: 
-```
+
+Notice that one parameter tells the pipeline to be monitored by Seqera platform
+(`-with-tower`). To do that login to Seqera platform and create a token (User tokens)
+clicking on the User settings button in the upper-right corner.
+
+Once created, copy it and export it in your terminal:
+
+```bash
 export TOWER_ACCESS_TOKEN=<your token>
 ```
 
 ## Needed to change vmType that in the nextflow.config:
-To meet the requirement of 12 CPUs and 72 GB of memory, we used “Standard_E16s_v3” with 16 cpus and 128GB memory
+
+To meet the requirement of 12 CPUs and 72 GB of memory, we used `Standard_E16s_v3`
+with 16 cpus and 128GB memory
+
 ```
 pools {
     auto {
@@ -74,7 +116,9 @@ pools {
         }
     }
 ```
+
 Also had to add the following code to skip a step that does not work well with Metaphlan:
+
 ```
 process {
     withName: 'TAXPASTA_MERGE' {
@@ -82,119 +126,119 @@ process {
     }
 }
 ```
+
 ## Parameters
+
 These are the parameters of the last succesful run
 
 <details>
 <summary>All parameters of quantms 1.6.0 (JSON)</summary>
 
-```python
+```json
 {
-    
-    "shortread_complexityfilter_prinseqplusplus_mode": "entropy",
-    "custom_config_base": "https://raw.githubusercontent.com/nf-core/configs/master",
-    "save_analysis_ready_fastqs": true,
-    "malt_generate_megansummary": false,
-    "plaintext_email": false,
-    "malt_mode": "BlastN",
-    "diamond_save_reads": false,
-    "shortread_complexityfilter_prinseqplusplus_dustscore": 0.5,
-    "kaiju_taxon_rank": "species",
-    "standardisation_taxpasta_format": "tsv",
-    "databases": "az://seqera/raw/projectname/data/databases.csv",
-    "run_kmcp": false,
-    "krakenuniq_ram_chunk_size": "16G",
-    "version": false,
-    "ganon_report_mincount": 0,
-    "run_kraken2": false,
-    "publish_dir_mode": "copy",
-    "input": "az://seqera/raw/projectname/data/Metagenomics2/samplesheet_metagenomics2.csv",
-    "perform_shortread_hostremoval": false,
-    "krakenuniq_batch_size": 20,
-    "shortread_qc_tool": "adapterremoval",
-    "run_metaphlan": true,
-    "preprocessing_qc_tool": "fastqc",
-    "motus_save_mgc_read_counts": false,
-    "shortread_qc_mergepairs": false,
-    "kraken2_save_readclassifications": false,
-    "taxpasta_add_name": false,
-    "ganon_report_maxcount": 0,
-    "standardisation_motus_generatebiom": false,
-    "shortread_complexityfilter_fastp_threshold": 30,
-    "shortread_complexityfilter_tool": "bbduk",
-    "save_preprocessed_reads": false,
-    "diamond_output_format": "tsv",
-    "custom_config_version": "master",
-    "ganon_report_type": "reads",
-    "shortread_qc_minlength": 100,
-    "run_centrifuge": false,
-    "shortread_qc_skipadaptertrim": false,
-    "longread_qc_qualityfilter_minlength": 1000,
-    "run_profile_standardisation": false,
-    "perform_shortread_qc": true,
-    "ganon_report_rank": "default",
-    "taxpasta_add_lineage": false,
-    "perform_shortread_redundancyestimation": false,
-    "run_krona": false,
-    "motus_remove_ncbi_ids": false,
-    "malt_save_reads": false,
-    "save_runmerged_reads": false,
-    "outdir": "az://seqera/results/smoke_scrub_malthe/metagenomics2/",
-    "pipelines_testdata_base_path": "https://raw.githubusercontent.com/nf-core/test-datasets/",
-    "help": false,
-    "shortread_complexityfilter_bbduk_mask": false,
-    "centrifuge_save_reads": false,
-    "save_hostremoval_bam": false,
-    "perform_runmerging": false,
-    "run_bracken": false,
-    "kmcp_save_search": false,
-    "shortread_complexityfilter_bbduk_windowsize": 50,
-    "help_full": false,
-    "monochrome_logs": false,
-    "ganon_report_toppercentile": 0,
-    "ganon_save_readclassifications": false,
-    "max_multiqc_email_size": "25.MB",
-    "shortread_qc_dedup": false,
-    "save_complexityfiltered_reads": false,
-    "longread_filter_tool": "nanoq",
-    "validate_params": true,
-    "kaiju_expand_viruses": false,
-    "run_diamond": false,
-    "skip_preprocessing_qc": false,
-    "krakenuniq_save_reads": false,
-    "perform_longread_qc": false,
-    "shortread_qc_includeunmerged": false,
-    "trace_report_suffix": "2025-08-29_11-33-52",
-    "shortread_redundancyestimation_mode": "kmer",
-    "run_ganon": false,
-    "longread_adapterremoval_tool": "porechop_abi",
-    "taxpasta_ignore_errors": false,
-    "longread_qc_skipadaptertrim": false,
-    "shortread_complexityfilter_entropy": 0.3,
-    "multiqc_title": "multiQC_metagenomics2",
-    "kraken2_save_minimizers": false,
-    "longread_qc_qualityfilter_minquality": 7,
-    "krakenuniq_save_readclassifications": false,
-    "longread_qc_skipqualityfilter": false,
-    "run_kaiju": false,
-    "kraken2_save_reads": false,
-    "motus_use_relative_abundance": false,
-    "run_motus": false,
-    "save_hostremoval_index": false,
-    "run_krakenuniq": false,
-    "show_hidden": false,
-    "longread_qc_qualityfilter_targetbases": 500000000,
-    "bracken_save_intermediatekraken2": false,
-    "taxpasta_add_rank": false,
-    "perform_shortread_complexityfilter": true,
-    "taxpasta_add_ranklineage": false,
-    "perform_longread_hostremoval": false,
-    "save_untarred_databases": false,
-    "longread_qc_qualityfilter_keeppercent": 90,
-    "taxpasta_add_idlineage": false,
-    "run_malt": false,
-    "save_hostremoval_unmapped": false
-
+  "shortread_complexityfilter_prinseqplusplus_mode": "entropy",
+  "custom_config_base": "https://raw.githubusercontent.com/nf-core/configs/master",
+  "save_analysis_ready_fastqs": true,
+  "malt_generate_megansummary": false,
+  "plaintext_email": false,
+  "malt_mode": "BlastN",
+  "diamond_save_reads": false,
+  "shortread_complexityfilter_prinseqplusplus_dustscore": 0.5,
+  "kaiju_taxon_rank": "species",
+  "standardisation_taxpasta_format": "tsv",
+  "databases": "az://seqera/raw/projectname/data/databases.csv",
+  "run_kmcp": false,
+  "krakenuniq_ram_chunk_size": "16G",
+  "version": false,
+  "ganon_report_mincount": 0,
+  "run_kraken2": false,
+  "publish_dir_mode": "copy",
+  "input": "az://seqera/raw/projectname/data/Metagenomics2/samplesheet_metagenomics2.csv",
+  "perform_shortread_hostremoval": false,
+  "krakenuniq_batch_size": 20,
+  "shortread_qc_tool": "adapterremoval",
+  "run_metaphlan": true,
+  "preprocessing_qc_tool": "fastqc",
+  "motus_save_mgc_read_counts": false,
+  "shortread_qc_mergepairs": false,
+  "kraken2_save_readclassifications": false,
+  "taxpasta_add_name": false,
+  "ganon_report_maxcount": 0,
+  "standardisation_motus_generatebiom": false,
+  "shortread_complexityfilter_fastp_threshold": 30,
+  "shortread_complexityfilter_tool": "bbduk",
+  "save_preprocessed_reads": false,
+  "diamond_output_format": "tsv",
+  "custom_config_version": "master",
+  "ganon_report_type": "reads",
+  "shortread_qc_minlength": 100,
+  "run_centrifuge": false,
+  "shortread_qc_skipadaptertrim": false,
+  "longread_qc_qualityfilter_minlength": 1000,
+  "run_profile_standardisation": false,
+  "perform_shortread_qc": true,
+  "ganon_report_rank": "default",
+  "taxpasta_add_lineage": false,
+  "perform_shortread_redundancyestimation": false,
+  "run_krona": false,
+  "motus_remove_ncbi_ids": false,
+  "malt_save_reads": false,
+  "save_runmerged_reads": false,
+  "outdir": "az://seqera/results/smoke_scrub_malthe/metagenomics2/",
+  "pipelines_testdata_base_path": "https://raw.githubusercontent.com/nf-core/test-datasets/",
+  "help": false,
+  "shortread_complexityfilter_bbduk_mask": false,
+  "centrifuge_save_reads": false,
+  "save_hostremoval_bam": false,
+  "perform_runmerging": false,
+  "run_bracken": false,
+  "kmcp_save_search": false,
+  "shortread_complexityfilter_bbduk_windowsize": 50,
+  "help_full": false,
+  "monochrome_logs": false,
+  "ganon_report_toppercentile": 0,
+  "ganon_save_readclassifications": false,
+  "max_multiqc_email_size": "25.MB",
+  "shortread_qc_dedup": false,
+  "save_complexityfiltered_reads": false,
+  "longread_filter_tool": "nanoq",
+  "validate_params": true,
+  "kaiju_expand_viruses": false,
+  "run_diamond": false,
+  "skip_preprocessing_qc": false,
+  "krakenuniq_save_reads": false,
+  "perform_longread_qc": false,
+  "shortread_qc_includeunmerged": false,
+  "trace_report_suffix": "2025-08-29_11-33-52",
+  "shortread_redundancyestimation_mode": "kmer",
+  "run_ganon": false,
+  "longread_adapterremoval_tool": "porechop_abi",
+  "taxpasta_ignore_errors": false,
+  "longread_qc_skipadaptertrim": false,
+  "shortread_complexityfilter_entropy": 0.3,
+  "multiqc_title": "multiQC_metagenomics2",
+  "kraken2_save_minimizers": false,
+  "longread_qc_qualityfilter_minquality": 7,
+  "krakenuniq_save_readclassifications": false,
+  "longread_qc_skipqualityfilter": false,
+  "run_kaiju": false,
+  "kraken2_save_reads": false,
+  "motus_use_relative_abundance": false,
+  "run_motus": false,
+  "save_hostremoval_index": false,
+  "run_krakenuniq": false,
+  "show_hidden": false,
+  "longread_qc_qualityfilter_targetbases": 500000000,
+  "bracken_save_intermediatekraken2": false,
+  "taxpasta_add_rank": false,
+  "perform_shortread_complexityfilter": true,
+  "taxpasta_add_ranklineage": false,
+  "perform_longread_hostremoval": false,
+  "save_untarred_databases": false,
+  "longread_qc_qualityfilter_keeppercent": 90,
+  "taxpasta_add_idlineage": false,
+  "run_malt": false,
+  "save_hostremoval_unmapped": false
 }
 ```
 
