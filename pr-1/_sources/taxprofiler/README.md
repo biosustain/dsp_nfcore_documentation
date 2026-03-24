@@ -132,7 +132,7 @@ process {
 These are the parameters of the last succesful run
 
 <details>
-<summary>All parameters of quantms 1.6.0 (JSON)</summary>
+<summary>All parameters of nf-core/taxprofiler 1.2.3 (JSON)</summary>
 
 ```json
 {
