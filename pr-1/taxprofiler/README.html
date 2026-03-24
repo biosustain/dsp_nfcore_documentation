@@ -166,7 +166,6 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../quantms/README.html">Bigbio/Quantms</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">nf-core/taxprofiler</a></li>
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">MISC</span></p>
 <ul class="nav bd-sidenav">
@@ -332,22 +331,16 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">nf-core/taxprofiler</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline">Taxonomical profiling using <code class="docutils literal notranslate"><span class="pre">nf-core/taxprofiler</span></code> pipeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-samplesheet-csv-as">Create <code class="docutils literal notranslate"><span class="pre">samplesheet.csv</span></code> as:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-databases-csv-sheet-as">Create a <code class="docutils literal notranslate"><span class="pre">databases.csv</span></code> sheet as:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-command-line-to-run-the-pipeline-outside-seqera">Example of Command line to run the pipeline outside Seqera</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#worth-noticing">Worth noticing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worth-noticing">Worth noticing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seqera-platform">Seqera platform</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#needed-to-change-vmtype-that-in-the-nextflow-config">Needed to change vmType that in the nextflow.config:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolved-configuration-on-seqera">Resolved configuration on Seqera</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -432,9 +425,8 @@ Using only Metaphlan as reference database</p>
 </pre></div>
 </div>
 </section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="worth-noticing">
-<h1>Worth noticing<a class="headerlink" href="#worth-noticing" title="Link to this heading">#</a></h1>
+<section id="worth-noticing">
+<h2>Worth noticing<a class="headerlink" href="#worth-noticing" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>You need to add <code class="docutils literal notranslate"><span class="pre">--shortread_qc_minlength</span> <span class="pre">100</span></code> to require a minimum length for read
 after quality control</p></li>
@@ -445,6 +437,7 @@ they go into classification or profiling</p></li>
 each sample get combined in a single report (This may be changed soon, follow issue:
 <a class="reference external" href="https://github.com/nf-core/taxprofiler/issues/494" rel="noreferrer" target="_blank">taxprofiler#494</a>)</p></li>
 </ul>
+</section>
 <section id="seqera-platform">
 <h2>Seqera platform<a class="headerlink" href="#seqera-platform" title="Link to this heading">#</a></h2>
 <p>Notice that one parameter tells the pipeline to be monitored by Seqera platform
@@ -1430,22 +1423,16 @@ cloudcache {
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">nf-core/taxprofiler</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#taxonomical-profiling-using-nf-core-taxprofiler-pipeline">Taxonomical profiling using <code class="docutils literal notranslate"><span class="pre">nf-core/taxprofiler</span></code> pipeline</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-samplesheet-csv-as">Create <code class="docutils literal notranslate"><span class="pre">samplesheet.csv</span></code> as:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-databases-csv-sheet-as">Create a <code class="docutils literal notranslate"><span class="pre">databases.csv</span></code> sheet as:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-command-line-to-run-the-pipeline-outside-seqera">Example of Command line to run the pipeline outside Seqera</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#worth-noticing">Worth noticing</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#worth-noticing">Worth noticing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seqera-platform">Seqera platform</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#needed-to-change-vmtype-that-in-the-nextflow-config">Needed to change vmType that in the nextflow.config:</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters">Parameters</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resolved-configuration-on-seqera">Resolved configuration on Seqera</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
