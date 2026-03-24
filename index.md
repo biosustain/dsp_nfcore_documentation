@@ -8,13 +8,6 @@
 :caption: Pipelines
 
 quantms/README.md
-```
-
-```{toctree}
-:maxdepth: 2
-:hidden:
-:caption: Pipelines
-
 taxprofiler/README.md
 ```
 
