@@ -8,6 +8,7 @@
 :caption: Pipelines
 
 quantms/README.md
+taxprofiler/README.md
 ```
 
 ```{toctree}
